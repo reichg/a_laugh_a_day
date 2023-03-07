@@ -155,11 +155,11 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
 
   int setDelayMilliseconds() {
     //typing indicator delay range
-    int min = 1750;
+    int min = 1500;
     int max = 2850;
 
     Random rnd = Random();
-
-    return rnd.nextInt(min + (max - min));
+    var delayMillis = min + rnd.nextInt(max - min);
+    return delayMillis;
   }
 }
