@@ -53,7 +53,7 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
                     borderRadius: BorderRadius.circular(5),
                     boxShadow: [
                       CustomBoxShadow(
-                          color: Color.fromARGB(71, 0, 0, 0),
+                          color: Constants.TEXT_SHADOW_BLACK,
                           offset: new Offset(0.5, 0.5),
                           blurRadius: 10.0,
                           blurStyle: BlurStyle.outer)
@@ -70,7 +70,7 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
                             fontFamily: 'Aleo-Regular',
                             fontWeight: FontWeight.w500,
                             fontSize: height / 48,
-                            color: Color.fromARGB(255, 0, 0, 0),
+                            color: Constants.TEXT_BLACK,
                             shadows: [
                               Shadow(
                                 offset: Offset(0.75, 0.75),
@@ -87,7 +87,7 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
                           style: TextStyle(
                             fontFamily: 'Aleo-Regular',
                             fontSize: height / 48,
-                            color: Color.fromARGB(255, 0, 0, 0),
+                            color: Constants.TEXT_BLACK,
                             fontWeight: FontWeight.w200,
                           ),
                         ),
@@ -100,7 +100,6 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
                 alignment: Alignment.bottomRight,
                 child: Container(
                   padding: EdgeInsets.all(2),
-                  // color: Color.fromARGB(255, 18, 81, 133),
                   child: Text(
                     "Read: ${dateHour}",
                   ),

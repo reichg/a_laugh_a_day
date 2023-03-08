@@ -50,17 +50,17 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
               letterSpacing: width / 80),
         ),
         centerTitle: true,
-        backgroundColor: Colors.black87,
-        foregroundColor: const Color.fromARGB(255, 28, 245, 219),
+        backgroundColor: Constants.BACKGROUJND_BLACK,
+        foregroundColor: Constants.BRIGHT_AQUA,
       ),
       body: Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
             gradient: LinearGradient(
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
           colors: [
-            Color.fromARGB(255, 28, 245, 220),
-            Color.fromARGB(255, 253, 163, 163),
+            Constants.BRIGHT_AQUA,
+            Constants.BRIGHT_TANGERINE,
           ],
         )),
         child: Center(
@@ -72,18 +72,18 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
                 child: _typingDelayComplete
                     ? Container(
                         decoration: BoxDecoration(
-                            gradient: const LinearGradient(
+                            gradient: LinearGradient(
                               begin: Alignment.topRight,
                               end: Alignment.bottomLeft,
                               colors: [
-                                Color.fromARGB(144, 253, 163, 163),
-                                Color.fromARGB(57, 28, 245, 220),
+                                Constants.DIMMER_TANGERINE,
+                                Constants.DIMMER_AQUA,
                               ],
                             ),
                             boxShadow: [
                               CustomBoxShadow(
-                                  color: Color.fromARGB(71, 0, 0, 0),
-                                  offset: new Offset(0.5, 0.5),
+                                  color: Constants.TEXT_SHADOW_BLACK,
+                                  offset: const Offset(0.5, 0.5),
                                   blurRadius: 10.0,
                                   blurStyle: BlurStyle.outer)
                             ]),
@@ -93,7 +93,7 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
                               Random().nextInt(Constants.DAD_NAMES.length)),
                         ),
                       )
-                    : SizedBox(),
+                    : const SizedBox(),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -109,7 +109,7 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
                     ElevatedButton(
                       style: ButtonStyle(
                           backgroundColor: MaterialStateColor.resolveWith(
-                              (states) => Color.fromARGB(99, 253, 163, 163))),
+                              (states) => Constants.BUTTON_TANGERINE)),
                       onPressed: () {
                         setState(() {
                           _typingDelayComplete = false;
@@ -132,12 +132,12 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
                         style: TextStyle(
                           fontFamily: 'Aleo-Regular',
                           fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(204, 0, 0, 0),
+                          color: Constants.SLIGHT_TRANSPARENT_BLACK,
                           letterSpacing: width / 130,
                           shadows: [
                             Shadow(
                               offset: Offset(0.75, 0.75),
-                              color: Color.fromARGB(57, 28, 245, 220),
+                              color: Constants.TEXT_SHADOW_BLACK,
                             )
                           ],
                         ),
