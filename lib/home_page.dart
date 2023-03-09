@@ -80,6 +80,7 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
                                 Constants.DIMMER_AQUA,
                               ],
                             ),
+                            borderRadius: BorderRadius.all(Radius.circular(5)),
                             boxShadow: [
                               CustomBoxShadow(
                                   color: Constants.TEXT_SHADOW_BLACK,
@@ -109,7 +110,8 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
                     ElevatedButton(
                       style: ButtonStyle(
                           backgroundColor: MaterialStateColor.resolveWith(
-                              (states) => Constants.BUTTON_TANGERINE)),
+                        (states) => Color.fromARGB(255, 253, 149, 149),
+                      )),
                       onPressed: () {
                         setState(() {
                           _typingDelayComplete = false;

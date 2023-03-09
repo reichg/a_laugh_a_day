@@ -41,7 +41,7 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
             children: [
               Center(
                 child: Container(
-                  child: Text("${dateDayName}: ${dateMonthName} ${dateDayAbb}"),
+                  child: Text("${dateDayName} ${dateMonthName} ${dateDayAbb}"),
                   padding: EdgeInsets.all(2),
                 ),
               ),
@@ -50,6 +50,7 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
                     vertical: height / 35, horizontal: width / 25),
                 child: Container(
                   decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 252, 158, 158),
                     borderRadius: BorderRadius.circular(5),
                     boxShadow: [
                       CustomBoxShadow(
