@@ -50,11 +50,10 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
                     vertical: height / 35, horizontal: width / 25),
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 252, 158, 158),
                     borderRadius: BorderRadius.circular(5),
                     boxShadow: [
                       CustomBoxShadow(
-                          color: Constants.TEXT_SHADOW_BLACK,
+                          color: Constants.PRIMARY_BLACK,
                           offset: new Offset(0.5, 0.5),
                           blurRadius: 10.0,
                           blurStyle: BlurStyle.outer)
@@ -66,18 +65,12 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          '- ${widget.dadName} -',
+                          'From: ${widget.dadName}',
                           style: TextStyle(
                             fontFamily: 'Aleo-Regular',
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.bold,
                             fontSize: height / 48,
-                            color: Constants.TEXT_BLACK,
-                            shadows: [
-                              Shadow(
-                                offset: Offset(0.75, 0.75),
-                                color: Color.fromARGB(255, 64, 64, 64),
-                              )
-                            ],
+                            color: Constants.PRIMARY_BLACK,
                           ),
                         ),
                       ),
@@ -87,8 +80,8 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
                           widget.jokeText,
                           style: TextStyle(
                             fontFamily: 'Aleo-Regular',
-                            fontSize: height / 48,
-                            color: Constants.TEXT_BLACK,
+                            fontSize: height / 40,
+                            color: Constants.PRIMARY_BLACK,
                             fontWeight: FontWeight.w200,
                           ),
                         ),
@@ -102,7 +95,7 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
                 child: Container(
                   padding: EdgeInsets.all(2),
                   child: Text(
-                    "Read: ${dateHour}",
+                    "Received: ${dateHour}",
                   ),
                 ),
               ),
