@@ -12,5 +12,5 @@ var DAD_NAMES = <String>[
 ];
 
 const Color PRIMARY_BLACK = Colors.black;
-const Color PRIMARY_AQUA = Color.fromARGB(223, 3, 180, 132);
+const Color PRIMARY_AQUA = Color.fromARGB(255, 0, 160, 112);
 const Color PRIMARY_GRADIENT_GREY = Color.fromARGB(255, 32, 32, 32);

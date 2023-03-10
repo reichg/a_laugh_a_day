@@ -63,7 +63,10 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.only(
+                            left: width / 20,
+                            top: height / 30,
+                            bottom: height / 40),
                         child: Text(
                           'From: ${widget.dadName}',
                           style: TextStyle(
@@ -75,7 +78,10 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.only(
+                            left: width / 20,
+                            right: width / 20,
+                            bottom: height / 30),
                         child: Text(
                           widget.jokeText,
                           style: TextStyle(
