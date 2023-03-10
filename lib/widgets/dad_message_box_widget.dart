@@ -1,8 +1,5 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:a_laugh_a_day/utils/constants.dart' as Constants;
-import 'package:a_laugh_a_day/widgets/typing_indicator/typing_indicator.dart';
 import 'package:intl/intl.dart';
 
 import 'custom_box_shadow/custom_box_shadow.dart';
@@ -11,7 +8,8 @@ class DadMessageBoxWidget extends StatefulWidget {
   final String dadName;
   final String jokeText;
 
-  DadMessageBoxWidget({Key? key, required this.jokeText, required this.dadName})
+  const DadMessageBoxWidget(
+      {Key? key, required this.jokeText, required this.dadName})
       : super(key: key);
 
   @override
@@ -41,8 +39,8 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
             children: [
               Center(
                 child: Container(
-                  child: Text("${dateDayName} ${dateMonthName} ${dateDayAbb}"),
-                  padding: EdgeInsets.all(2),
+                  padding: const EdgeInsets.all(2),
+                  child: Text("$dateDayName $dateMonthName $dateDayAbb"),
                 ),
               ),
               Padding(
@@ -50,12 +48,11 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
                     vertical: height / 35, horizontal: width / 25),
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 252, 158, 158),
-                    borderRadius: BorderRadius.circular(5),
-                    boxShadow: [
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: const [
                       CustomBoxShadow(
-                          color: Constants.TEXT_SHADOW_BLACK,
-                          offset: new Offset(0.5, 0.5),
+                          color: Constants.PRIMARY_BLACK,
+                          offset: Offset(0.5, 0.5),
                           blurRadius: 10.0,
                           blurStyle: BlurStyle.outer)
                     ],
@@ -64,31 +61,31 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.only(
+                            left: width / 20,
+                            top: height / 30,
+                            bottom: height / 40),
                         child: Text(
-                          '- ${widget.dadName} -',
+                          'From: ${widget.dadName}',
                           style: TextStyle(
                             fontFamily: 'Aleo-Regular',
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.bold,
                             fontSize: height / 48,
-                            color: Constants.TEXT_BLACK,
-                            shadows: [
-                              Shadow(
-                                offset: Offset(0.75, 0.75),
-                                color: Color.fromARGB(255, 64, 64, 64),
-                              )
-                            ],
+                            color: Constants.PRIMARY_BLACK,
                           ),
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.only(
+                            left: width / 20,
+                            right: width / 20,
+                            bottom: height / 30),
                         child: Text(
                           widget.jokeText,
                           style: TextStyle(
                             fontFamily: 'Aleo-Regular',
-                            fontSize: height / 48,
-                            color: Constants.TEXT_BLACK,
+                            fontSize: height / 40,
+                            color: Constants.PRIMARY_BLACK,
                             fontWeight: FontWeight.w200,
                           ),
                         ),
@@ -100,9 +97,9 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
               Align(
                 alignment: Alignment.bottomRight,
                 child: Container(
-                  padding: EdgeInsets.all(2),
+                  padding: const EdgeInsets.all(2),
                   child: Text(
-                    "Read: ${dateHour}",
+                    "Received: $dateHour",
                   ),
                 ),
               ),

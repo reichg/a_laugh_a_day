@@ -50,17 +50,17 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
               letterSpacing: width / 80),
         ),
         centerTitle: true,
-        backgroundColor: Constants.BACKGROUJND_BLACK,
-        foregroundColor: Constants.BRIGHT_AQUA,
+        backgroundColor: Constants.PRIMARY_BLACK,
+        foregroundColor: Constants.PRIMARY_AQUA,
       ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             gradient: LinearGradient(
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
           colors: [
-            Constants.BRIGHT_AQUA,
-            Constants.BRIGHT_TANGERINE,
+            Constants.PRIMARY_GRADIENT_GREY,
+            Constants.PRIMARY_BLACK,
           ],
         )),
         child: Center(
@@ -71,21 +71,14 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
                 padding: EdgeInsets.only(left: (width / 20), right: width / 20),
                 child: _typingDelayComplete
                     ? Container(
-                        decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.topRight,
-                              end: Alignment.bottomLeft,
-                              colors: [
-                                Constants.DIMMER_TANGERINE,
-                                Constants.DIMMER_AQUA,
-                              ],
-                            ),
-                            borderRadius: BorderRadius.all(Radius.circular(5)),
+                        decoration: const BoxDecoration(
+                            color: Constants.PRIMARY_AQUA,
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
                             boxShadow: [
                               CustomBoxShadow(
-                                  color: Constants.TEXT_SHADOW_BLACK,
-                                  offset: const Offset(0.5, 0.5),
-                                  blurRadius: 10.0,
+                                  color: Constants.PRIMARY_AQUA,
+                                  offset: Offset(1.2, 1.2),
+                                  blurRadius: 5,
                                   blurStyle: BlurStyle.outer)
                             ]),
                         child: DadMessageBoxWidget(
@@ -97,7 +90,7 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
                     : const SizedBox(),
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: EdgeInsets.all(width / 15),
                 child: TypingIndicator(
                   showIndicator: !_typingDelayComplete,
                 ),
@@ -109,9 +102,14 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
                   children: [
                     ElevatedButton(
                       style: ButtonStyle(
-                          backgroundColor: MaterialStateColor.resolveWith(
-                        (states) => Color.fromARGB(255, 253, 149, 149),
-                      )),
+                        backgroundColor: MaterialStateColor.resolveWith(
+                          (states) => Constants.PRIMARY_AQUA,
+                        ),
+                        elevation:
+                            MaterialStateProperty.resolveWith((states) => 5),
+                        shadowColor: MaterialStateProperty.resolveWith(
+                            (states) => Constants.PRIMARY_AQUA),
+                      ),
                       onPressed: () {
                         setState(() {
                           _typingDelayComplete = false;
@@ -134,14 +132,9 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
                         style: TextStyle(
                           fontFamily: 'Aleo-Regular',
                           fontWeight: FontWeight.bold,
-                          color: Constants.SLIGHT_TRANSPARENT_BLACK,
+                          fontSize: width / 30,
+                          color: Constants.PRIMARY_BLACK,
                           letterSpacing: width / 130,
-                          shadows: [
-                            Shadow(
-                              offset: Offset(0.75, 0.75),
-                              color: Constants.TEXT_SHADOW_BLACK,
-                            )
-                          ],
                         ),
                       ),
                     ),
