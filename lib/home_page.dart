@@ -73,12 +73,12 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
                     ? Container(
                         decoration: const BoxDecoration(
                             color: Constants.PRIMARY_AQUA,
-                            borderRadius: BorderRadius.all(Radius.circular(5)),
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
                             boxShadow: [
                               CustomBoxShadow(
-                                  color: Color.fromARGB(255, 58, 58, 58),
-                                  offset: Offset(0.5, 0.5),
-                                  blurRadius: 5.0,
+                                  color: Constants.PRIMARY_AQUA,
+                                  offset: Offset(1.2, 1.2),
+                                  blurRadius: 5,
                                   blurStyle: BlurStyle.outer)
                             ]),
                         child: DadMessageBoxWidget(
@@ -102,9 +102,14 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
                   children: [
                     ElevatedButton(
                       style: ButtonStyle(
-                          backgroundColor: MaterialStateColor.resolveWith(
-                        (states) => Constants.PRIMARY_AQUA,
-                      )),
+                        backgroundColor: MaterialStateColor.resolveWith(
+                          (states) => Constants.PRIMARY_AQUA,
+                        ),
+                        elevation:
+                            MaterialStateProperty.resolveWith((states) => 5),
+                        shadowColor: MaterialStateProperty.resolveWith(
+                            (states) => Constants.PRIMARY_AQUA),
+                      ),
                       onPressed: () {
                         setState(() {
                           _typingDelayComplete = false;
