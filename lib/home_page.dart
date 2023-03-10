@@ -90,7 +90,7 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
                     : const SizedBox(),
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: EdgeInsets.all(width / 15),
                 child: TypingIndicator(
                   showIndicator: !_typingDelayComplete,
                 ),
@@ -127,6 +127,7 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
                         style: TextStyle(
                           fontFamily: 'Aleo-Regular',
                           fontWeight: FontWeight.bold,
+                          fontSize: width / 30,
                           color: Constants.PRIMARY_BLACK,
                           letterSpacing: width / 130,
                         ),

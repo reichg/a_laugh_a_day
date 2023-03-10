@@ -41,8 +41,8 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
             children: [
               Center(
                 child: Container(
-                  child: Text("${dateDayName} ${dateMonthName} ${dateDayAbb}"),
-                  padding: EdgeInsets.all(2),
+                  padding: const EdgeInsets.all(2),
+                  child: Text("$dateDayName $dateMonthName $dateDayAbb"),
                 ),
               ),
               Padding(
@@ -51,10 +51,10 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
-                    boxShadow: [
+                    boxShadow: const [
                       CustomBoxShadow(
                           color: Constants.PRIMARY_BLACK,
-                          offset: new Offset(0.5, 0.5),
+                          offset: Offset(0.5, 0.5),
                           blurRadius: 10.0,
                           blurStyle: BlurStyle.outer)
                     ],
