@@ -1,8 +1,5 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:a_laugh_a_day/utils/constants.dart' as Constants;
-import 'package:a_laugh_a_day/widgets/typing_indicator/typing_indicator.dart';
 import 'package:intl/intl.dart';
 
 import 'custom_box_shadow/custom_box_shadow.dart';
@@ -11,7 +8,8 @@ class DadMessageBoxWidget extends StatefulWidget {
   final String dadName;
   final String jokeText;
 
-  DadMessageBoxWidget({Key? key, required this.jokeText, required this.dadName})
+  const DadMessageBoxWidget(
+      {Key? key, required this.jokeText, required this.dadName})
       : super(key: key);
 
   @override
@@ -99,9 +97,9 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
               Align(
                 alignment: Alignment.bottomRight,
                 child: Container(
-                  padding: EdgeInsets.all(2),
+                  padding: const EdgeInsets.all(2),
                   child: Text(
-                    "Received: ${dateHour}",
+                    "Received: $dateHour",
                   ),
                 ),
               ),
