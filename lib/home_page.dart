@@ -18,6 +18,7 @@ class JokeGeneratorHome extends StatefulWidget {
 }
 
 class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
+  Random rnd = Random();
   final Set<JokeObject> _jokes = <JokeObject>{};
   bool _typingDelayComplete = false;
 
@@ -153,7 +154,6 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
     int min = 1500;
     int max = 2850;
 
-    Random rnd = Random();
     var delayMillis = min + rnd.nextInt(max - min);
     return delayMillis;
   }
