@@ -1,16 +1,8 @@
 # a_laugh_a_day
 
-A new Flutter project.
+Just a fun app to trigger some laughs!
 
-## Getting Started
+## Demo
 
-This project is a starting point for a Flutter application.
+https://user-images.githubusercontent.com/18335251/224210928-010a2ce9-c3dd-4dd0-99ae-caecb2b83664.mp4
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
