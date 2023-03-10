@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:a_laugh_a_day/widgets/typing_indicator/status_bubble.dart';
+import 'package:a_laugh_a_day/utils/constants.dart' as Constants;
 
 import 'animated_bubble.dart';
 import 'circle_bubble.dart';
@@ -8,8 +9,8 @@ class TypingIndicator extends StatefulWidget {
   const TypingIndicator({
     super.key,
     this.showIndicator = false,
-    this.bubbleColor = const Color.fromARGB(142, 28, 245, 220),
-    this.flashingCircleDarkColor = const Color.fromARGB(255, 25, 139, 238),
+    this.bubbleColor = Constants.PRIMARY_AQUA,
+    this.flashingCircleDarkColor = const Color.fromARGB(255, 85, 85, 85),
     this.flashingCircleBrightColor = const Color.fromARGB(255, 223, 228, 228),
   });
 

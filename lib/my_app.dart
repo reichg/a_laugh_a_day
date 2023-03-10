@@ -12,7 +12,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      title: 'Dad Joke Generator',
+      title: 'A Laugh A Day',
       home: JokeGeneratorHome(),
       debugShowCheckedModeBanner: false,
     );

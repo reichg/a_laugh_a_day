@@ -50,8 +50,8 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
               letterSpacing: width / 80),
         ),
         centerTitle: true,
-        backgroundColor: Colors.black87,
-        foregroundColor: const Color.fromARGB(255, 28, 245, 219),
+        backgroundColor: Constants.PRIMARY_BLACK,
+        foregroundColor: Constants.PRIMARY_AQUA,
       ),
       body: Container(
         decoration: const BoxDecoration(
@@ -59,8 +59,8 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
           colors: [
-            Color.fromARGB(255, 28, 245, 220),
-            Color.fromARGB(255, 253, 163, 163),
+            Constants.PRIMARY_GRADIENT_GREY,
+            Constants.PRIMARY_BLACK,
           ],
         )),
         child: Center(
@@ -71,20 +71,14 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
                 padding: EdgeInsets.only(left: (width / 20), right: width / 20),
                 child: _typingDelayComplete
                     ? Container(
-                        decoration: BoxDecoration(
-                            gradient: const LinearGradient(
-                              begin: Alignment.topRight,
-                              end: Alignment.bottomLeft,
-                              colors: [
-                                Color.fromARGB(144, 253, 163, 163),
-                                Color.fromARGB(57, 28, 245, 220),
-                              ],
-                            ),
+                        decoration: const BoxDecoration(
+                            color: Constants.PRIMARY_AQUA,
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
                             boxShadow: [
                               CustomBoxShadow(
-                                  color: Color.fromARGB(71, 0, 0, 0),
-                                  offset: new Offset(0.5, 0.5),
-                                  blurRadius: 10.0,
+                                  color: Constants.PRIMARY_AQUA,
+                                  offset: Offset(1.2, 1.2),
+                                  blurRadius: 5,
                                   blurStyle: BlurStyle.outer)
                             ]),
                         child: DadMessageBoxWidget(
@@ -93,10 +87,10 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
                               Random().nextInt(Constants.DAD_NAMES.length)),
                         ),
                       )
-                    : SizedBox(),
+                    : const SizedBox(),
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: EdgeInsets.all(width / 15),
                 child: TypingIndicator(
                   showIndicator: !_typingDelayComplete,
                 ),
@@ -108,8 +102,14 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
                   children: [
                     ElevatedButton(
                       style: ButtonStyle(
-                          backgroundColor: MaterialStateColor.resolveWith(
-                              (states) => Color.fromARGB(99, 253, 163, 163))),
+                        backgroundColor: MaterialStateColor.resolveWith(
+                          (states) => Constants.PRIMARY_AQUA,
+                        ),
+                        elevation:
+                            MaterialStateProperty.resolveWith((states) => 5),
+                        shadowColor: MaterialStateProperty.resolveWith(
+                            (states) => Constants.PRIMARY_AQUA),
+                      ),
                       onPressed: () {
                         setState(() {
                           _typingDelayComplete = false;
@@ -132,14 +132,9 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
                         style: TextStyle(
                           fontFamily: 'Aleo-Regular',
                           fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(204, 0, 0, 0),
+                          fontSize: width / 30,
+                          color: Constants.PRIMARY_BLACK,
                           letterSpacing: width / 130,
-                          shadows: [
-                            Shadow(
-                              offset: Offset(0.75, 0.75),
-                              color: Color.fromARGB(57, 28, 245, 220),
-                            )
-                          ],
                         ),
                       ),
                     ),
@@ -155,11 +150,11 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
 
   int setDelayMilliseconds() {
     //typing indicator delay range
-    int min = 1750;
+    int min = 1500;
     int max = 2850;
 
     Random rnd = Random();
-
-    return rnd.nextInt(min + (max - min));
+    var delayMillis = min + rnd.nextInt(max - min);
+    return delayMillis;
   }
 }
