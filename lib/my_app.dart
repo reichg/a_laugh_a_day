@@ -12,12 +12,10 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return Sizer(builder: (context, orientation, deviceType) {
-      return const MaterialApp(
-        title: 'A Laugh A Day',
-        home: JokeGeneratorHome(),
-        debugShowCheckedModeBanner: false,
-      );
-    });
+    return const MaterialApp(
+      title: 'A Laugh A Day',
+      home: JokeGeneratorHome(),
+      debugShowCheckedModeBanner: false,
+    );
   }
 }

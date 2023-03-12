@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:a_laugh_a_day/utils/joke_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:a_laugh_a_day/utils/constants.dart' as Constants;
 import 'package:intl/intl.dart';
@@ -8,15 +11,20 @@ class DadMessageBoxWidget extends StatefulWidget {
   final String dadName;
   final String jokeText;
 
-  const DadMessageBoxWidget(
-      {Key? key, required this.jokeText, required this.dadName})
-      : super(key: key);
+  const DadMessageBoxWidget({
+    Key? key,
+    required this.jokeText,
+    required this.dadName,
+  }) : super(key: key);
 
   @override
   State<DadMessageBoxWidget> createState() => _DadMessageBoxWidgetState();
 }
 
 class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
+  Random rnd = Random();
+  String imageId = '1x7krU-0UwcIs_IguBVoo4ZyzCbLCKK4G';
+
   @override
   Widget build(BuildContext context) {
     DateTime currentDate = DateTime.now();
@@ -25,8 +33,6 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
     final dateDayAbb = DateFormat('d').format(currentDate);
     final dateHour = DateFormat('Hm').format(currentDate);
 
-    //To Do
-    //Need to add custom text message widget to hold text from "dad"
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -38,7 +44,14 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
               Center(
                 child: Container(
                   padding: const EdgeInsets.all(5),
-                  child: Text("$dateDayName $dateMonthName $dateDayAbb"),
+                  child: Text(
+                    "$dateDayName $dateMonthName $dateDayAbb",
+                    style: TextStyle(
+                      color: Color.fromARGB(176, 255, 255, 255),
+                      fontFamily: 'Futura',
+                      fontSize: 13,
+                    ),
+                  ),
                 ),
               ),
               Padding(
@@ -46,7 +59,7 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
                 child: Center(
                   child: Container(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(5),
                       boxShadow: const [
                         CustomBoxShadow(
                             color: Constants.PRIMARY_BLACK,
@@ -63,14 +76,28 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
                             vertical: 15,
                             horizontal: 15,
                           ),
-                          child: Text(
-                            'From: ${widget.dadName}',
-                            style: const TextStyle(
-                              fontFamily: 'Aleo-Regular',
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                              color: Constants.PRIMARY_BLACK,
-                            ),
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(right: 8.0),
+                                child: CircleAvatar(
+                                  backgroundImage: AssetImage(Constants
+                                      .DAD_PHOTOS
+                                      .elementAt(rnd.nextInt(
+                                          Constants.DAD_PHOTOS.length))),
+                                  radius: 25,
+                                ),
+                              ),
+                              Text(
+                                '${widget.dadName}',
+                                style: const TextStyle(
+                                  fontFamily: 'Futura',
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 20,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                         Padding(
@@ -79,10 +106,10 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
                           child: Text(
                             widget.jokeText,
                             style: const TextStyle(
-                              fontFamily: 'Aleo-Regular',
+                              fontFamily: 'Futura',
                               fontSize: 22,
-                              color: Constants.PRIMARY_BLACK,
-                              fontWeight: FontWeight.w200,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w300,
                             ),
                           ),
                         ),
@@ -97,6 +124,10 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
                   padding: const EdgeInsets.all(6),
                   child: Text(
                     "Received: $dateHour",
+                    style: TextStyle(
+                        color: Color.fromARGB(176, 255, 255, 255),
+                        fontFamily: 'Futura',
+                        fontSize: 13),
                   ),
                 ),
               ),

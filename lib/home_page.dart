@@ -1,6 +1,8 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:a_laugh_a_day/models/joke.dart';
@@ -43,44 +45,50 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
 
     return SafeArea(
         child: Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         title: Text(
           "A LAUGH A DAY",
           style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontFamily: 'Aleo-Regular',
+              fontFamily: 'Futura',
               letterSpacing: 9),
         ),
         centerTitle: true,
-        backgroundColor: Constants.PRIMARY_BLACK,
-        foregroundColor: Constants.PRIMARY_AQUA,
+        backgroundColor: Color.fromARGB(18, 203, 203, 203),
+        foregroundColor: Color.fromARGB(207, 0, 221, 207),
+        elevation: 5,
+        shadowColor: Color.fromARGB(255, 0, 0, 0),
       ),
       body: Container(
         decoration: const BoxDecoration(
-            gradient: LinearGradient(
-          begin: Alignment.topRight,
-          end: Alignment.bottomLeft,
-          colors: [
-            Constants.PRIMARY_GRADIENT_GREY,
-            Constants.PRIMARY_BLACK,
-          ],
-        )),
+            color: Color.fromARGB(238, 3, 4, 6),
+            boxShadow: [
+              CustomBoxShadow(
+                  color: Constants.PRIMARY_BLACK,
+                  offset: Offset(0.5, 0.5),
+                  blurRadius: 10.0,
+                  blurStyle: BlurStyle.outer)
+            ]),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                padding: EdgeInsets.symmetric(
+                  vertical: 10,
+                  horizontal: 15,
+                ),
                 child: _typingDelayComplete
                     ? Container(
                         decoration: const BoxDecoration(
-                            color: Constants.PRIMARY_AQUA,
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            color: Color.fromARGB(18, 203, 203, 203),
+                            borderRadius: BorderRadius.all(Radius.circular(5)),
                             boxShadow: [
                               CustomBoxShadow(
-                                  color: Constants.PRIMARY_AQUA,
-                                  offset: Offset(1.2, 1.2),
-                                  blurRadius: 5,
+                                  color: Color.fromARGB(255, 0, 0, 0),
+                                  offset: Offset(1.5, 1.5),
+                                  blurRadius: 10,
                                   blurStyle: BlurStyle.outer)
                             ]),
                         child: Center(
@@ -105,18 +113,10 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ElevatedButton(
-                      style: ButtonStyle(
-                        padding: MaterialStateProperty.resolveWith((states) =>
-                            EdgeInsets.symmetric(
-                                vertical: 2.h, horizontal: 3.w)),
-                        backgroundColor: MaterialStateColor.resolveWith(
-                          (states) => Constants.PRIMARY_AQUA,
-                        ),
-                        elevation:
-                            MaterialStateProperty.resolveWith((states) => 5),
-                        shadowColor: MaterialStateProperty.resolveWith(
-                            (states) => Constants.PRIMARY_AQUA),
-                      ),
+                      style: ElevatedButton.styleFrom(
+                          elevation: 5,
+                          primary: Color.fromARGB(207, 0, 221, 207),
+                          shadowColor: Colors.black),
                       onPressed: () {
                         setState(() {
                           _typingDelayComplete = false;
@@ -137,11 +137,11 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
                       child: const Text(
                         "Another Laugh?",
                         style: TextStyle(
-                          fontFamily: 'Aleo-Regular',
+                          fontFamily: 'Futura',
                           fontWeight: FontWeight.bold,
                           fontSize: 18,
                           color: Constants.PRIMARY_BLACK,
-                          letterSpacing: 5,
+                          letterSpacing: 3,
                         ),
                       ),
                     ),
