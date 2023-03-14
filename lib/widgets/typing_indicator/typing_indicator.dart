@@ -9,7 +9,7 @@ class TypingIndicator extends StatefulWidget {
   const TypingIndicator({
     super.key,
     this.showIndicator = false,
-    this.bubbleColor = Constants.PRIMARY_AQUA,
+    this.bubbleColor = const Color.fromARGB(207, 0, 221, 207),
     this.flashingCircleDarkColor = const Color.fromARGB(255, 85, 85, 85),
     this.flashingCircleBrightColor = const Color.fromARGB(255, 223, 228, 228),
   });
