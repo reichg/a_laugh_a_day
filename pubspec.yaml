@@ -37,6 +37,7 @@ dependencies:
   http: ^0.13.5
   intl: ^0.18.0
   sizer: ^2.0.15
+  purchases_flutter: ^4.10.4
 
 dev_dependencies:
   flutter_test:
