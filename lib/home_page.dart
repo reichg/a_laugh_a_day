@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:a_laugh_a_day/widgets/subscription_page/subscription.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -18,8 +19,11 @@ class JokeGeneratorHome extends StatefulWidget {
 }
 
 class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
+  Random rnd = Random();
   final Set<JokeObject> _jokes = <JokeObject>{};
+  int _jokesRetrievedToday = 0;
   bool _typingDelayComplete = false;
+  bool isMenuActive = false;
 
   @override
   void initState() {
@@ -40,112 +44,137 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
     double width = MediaQuery.of(context).size.width;
 
     return SafeArea(
-        child: Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "A LAUGH A DAY",
-          style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Aleo-Regular',
-              letterSpacing: width / 80),
-        ),
-        centerTitle: true,
-        backgroundColor: Constants.PRIMARY_BLACK,
-        foregroundColor: Constants.PRIMARY_AQUA,
-      ),
-      body: Container(
-        decoration: const BoxDecoration(
-            gradient: LinearGradient(
-          begin: Alignment.topRight,
-          end: Alignment.bottomLeft,
-          colors: [
-            Constants.PRIMARY_GRADIENT_GREY,
-            Constants.PRIMARY_BLACK,
-          ],
-        )),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: EdgeInsets.only(left: (width / 20), right: width / 20),
-                child: _typingDelayComplete
-                    ? Container(
-                        decoration: const BoxDecoration(
-                            color: Constants.PRIMARY_AQUA,
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
-                            boxShadow: [
-                              CustomBoxShadow(
-                                  color: Constants.PRIMARY_AQUA,
-                                  offset: Offset(1.2, 1.2),
-                                  blurRadius: 5,
-                                  blurStyle: BlurStyle.outer)
-                            ]),
-                        child: DadMessageBoxWidget(
-                          jokeText: _jokes.first.joke,
-                          dadName: Constants.DAD_NAMES.elementAt(
-                              Random().nextInt(Constants.DAD_NAMES.length)),
-                        ),
-                      )
-                    : const SizedBox(),
-              ),
-              Padding(
-                padding: EdgeInsets.all(width / 15),
-                child: TypingIndicator(
-                  showIndicator: !_typingDelayComplete,
+      child: Scaffold(
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          leading: PopupMenuButton(
+            itemBuilder: (context) {
+              return [
+                PopupMenuItem(
+                  child: Text(
+                    "Subscription",
+                  ),
+                  onTap: () {},
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: height / 12),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateColor.resolveWith(
-                          (states) => Constants.PRIMARY_AQUA,
-                        ),
-                        elevation:
-                            MaterialStateProperty.resolveWith((states) => 5),
-                        shadowColor: MaterialStateProperty.resolveWith(
-                            (states) => Constants.PRIMARY_AQUA),
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          _typingDelayComplete = false;
-                        });
+              ];
+            },
+            icon: Icon(Icons.menu_sharp),
+          ),
+          title: Text(
+            "A LAUGH A DAY",
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Futura',
+                letterSpacing: 9),
+          ),
+          centerTitle: true,
+          backgroundColor: Color.fromARGB(18, 203, 203, 203),
+          foregroundColor: Color.fromARGB(207, 0, 221, 207),
+          elevation: 5,
+          shadowColor: Color.fromARGB(255, 0, 0, 0),
+        ),
+        body: Container(
+          decoration: const BoxDecoration(
+              color: Color.fromARGB(238, 3, 4, 6),
+              boxShadow: [
+                CustomBoxShadow(
+                    color: Constants.PRIMARY_BLACK,
+                    offset: Offset(0.5, 0.5),
+                    blurRadius: 10.0,
+                    blurStyle: BlurStyle.outer)
+              ]),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: 10,
+                    horizontal: 15,
+                  ),
+                  child: _typingDelayComplete
+                      ? Container(
+                          decoration: const BoxDecoration(
+                              color: Color.fromARGB(18, 203, 203, 203),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5)),
+                              boxShadow: [
+                                CustomBoxShadow(
+                                    color: Color.fromARGB(255, 0, 0, 0),
+                                    offset: Offset(1.5, 1.5),
+                                    blurRadius: 10,
+                                    blurStyle: BlurStyle.outer)
+                              ]),
+                          child: Center(
+                            child: DadMessageBoxWidget(
+                              jokeText: _jokes.first.joke,
+                              dadName: Constants.DAD_NAMES.elementAt(
+                                  Random().nextInt(Constants.DAD_NAMES.length)),
+                            ),
+                          ),
+                        )
+                      : const SizedBox(),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(10),
+                  child: TypingIndicator(
+                    showIndicator: !_typingDelayComplete,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 40),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            elevation: 5,
+                            primary: Color.fromARGB(207, 0, 221, 207),
+                            shadowColor: Colors.black),
+                        onPressed: () {
+                          if (isSubscriptionsPage()) {
+                            showSubscriptionPage();
+                            return;
+                          }
+                          setState(() {
+                            _typingDelayComplete = false;
+                            _jokesRetrievedToday++;
+                            print(_jokesRetrievedToday);
 
-                        fetchJokeJson(http.Client()).then((value) {
-                          Future.delayed(
-                              Duration(milliseconds: setDelayMilliseconds()),
-                              () {
-                            setState(() {
-                              _jokes.clear();
-                              _jokes.add(value.first);
-                              _typingDelayComplete = true;
+                            fetchJokeJson(http.Client()).then((value) {
+                              Future.delayed(
+                                  Duration(
+                                      milliseconds: setDelayMilliseconds()),
+                                  () {
+                                setState(() {
+                                  _jokes.clear();
+                                  _jokes.add(value.first);
+                                  _typingDelayComplete = true;
+                                });
+                              });
                             });
                           });
-                        });
-                      },
-                      child: Text(
-                        "Another Laugh?",
-                        style: TextStyle(
-                          fontFamily: 'Aleo-Regular',
-                          fontWeight: FontWeight.bold,
-                          fontSize: width / 30,
-                          color: Constants.PRIMARY_BLACK,
-                          letterSpacing: width / 130,
+                        },
+                        child: const Text(
+                          "Another Laugh?",
+                          style: TextStyle(
+                            fontFamily: 'Futura',
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                            color: Constants.PRIMARY_BLACK,
+                            letterSpacing: 3,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
-    ));
+    );
   }
 
   int setDelayMilliseconds() {
@@ -153,8 +182,17 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
     int min = 1500;
     int max = 2850;
 
-    Random rnd = Random();
     var delayMillis = min + rnd.nextInt(max - min);
     return delayMillis;
+  }
+
+  bool isSubscriptionsPage() {
+    return _jokesRetrievedToday >= 5;
+  }
+
+  void showSubscriptionPage() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) => SubscriptionsPage());
   }
 }

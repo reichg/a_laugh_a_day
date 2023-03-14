@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import '../models/joke.dart';
 import 'package:http/http.dart' as http;
+import 'package:a_laugh_a_day/utils/constants.dart' as Constants;
 
 Future<Set<JokeObject>> fetchJokeJson(http.Client client) async {
   const url = 'https://icanhazdadjoke.com/';
