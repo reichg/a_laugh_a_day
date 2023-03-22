@@ -10,11 +10,13 @@ import 'custom_box_shadow/custom_box_shadow.dart';
 class DadMessageBoxWidget extends StatefulWidget {
   final String dadName;
   final String jokeText;
+  final AssetImage dadImage;
 
   const DadMessageBoxWidget({
     Key? key,
     required this.jokeText,
     required this.dadName,
+    required this.dadImage,
   }) : super(key: key);
 
   @override
@@ -81,10 +83,7 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
                               Padding(
                                 padding: const EdgeInsets.only(right: 8.0),
                                 child: CircleAvatar(
-                                  backgroundImage: AssetImage(Constants
-                                      .DAD_PHOTOS
-                                      .elementAt(rnd.nextInt(
-                                          Constants.DAD_PHOTOS.length))),
+                                  backgroundImage: widget.dadImage,
                                   radius: 25,
                                 ),
                               ),
