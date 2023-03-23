@@ -1,12 +1,11 @@
-import 'dart:math';
-
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:a_laugh_a_day/utils/constants.dart' as Constants;
 import 'package:intl/intl.dart';
 
 import 'custom_box_shadow/custom_box_shadow.dart';
 
-class DadMessageBoxWidget extends StatefulWidget {
+class DadMessageBoxWidget extends StatelessWidget {
   final String dadName;
   final String jokeText;
   final Image dadImage;
@@ -17,13 +16,6 @@ class DadMessageBoxWidget extends StatefulWidget {
     required this.dadName,
     required this.dadImage,
   }) : super(key: key);
-
-  @override
-  State<DadMessageBoxWidget> createState() => _DadMessageBoxWidgetState();
-}
-
-class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
-  Random rnd = Random();
 
   @override
   Widget build(BuildContext context) {
@@ -81,12 +73,12 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
                               Padding(
                                 padding: const EdgeInsets.only(right: 8.0),
                                 child: CircleAvatar(
-                                  backgroundImage: widget.dadImage.image,
+                                  backgroundImage: dadImage.image,
                                   radius: 25,
                                 ),
                               ),
                               Text(
-                                '${widget.dadName}',
+                                '${dadName}',
                                 style: const TextStyle(
                                     fontFamily: 'Futura',
                                     fontWeight: FontWeight.w600,
@@ -106,8 +98,10 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
                         Padding(
                           padding: const EdgeInsets.symmetric(
                               vertical: 15, horizontal: 15),
-                          child: Text(
-                            widget.jokeText,
+                          child: AutoSizeText(
+                            minFontSize: 16,
+                            maxLines: 11,
+                            jokeText,
                             style: const TextStyle(
                                 fontFamily: 'Futura',
                                 fontSize: 22,

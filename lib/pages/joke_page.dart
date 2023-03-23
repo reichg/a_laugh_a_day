@@ -48,6 +48,7 @@ class _JokePageState extends State<JokePage> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.dadImage);
     return Container(
       decoration: BoxDecoration(
         color: Color.fromARGB(238, 3, 4, 6),
@@ -117,14 +118,15 @@ class _JokePageState extends State<JokePage> {
                         widget.typingDelayComplete = false;
 
                         fetchJokeJson(http.Client()).then((value) {
+                          widget.joke = value;
+                          widget.dadName = getDadName();
+                          getDadImage()
+                              .then((value) => widget.dadImage = value);
                           Future.delayed(
-                              Duration(milliseconds: _setDelayMilliseconds()),
+                              Duration(milliseconds: setDelayMilliseconds()),
                               () {
                             setState(() {
-                              widget.joke = value;
                               widget.typingDelayComplete = true;
-                              widget.dadName = getDadName();
-                              widget.dadImage = getDadImage();
                             });
                           });
                         });
