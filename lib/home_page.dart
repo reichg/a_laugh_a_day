@@ -23,7 +23,7 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
   late JokeObject _joke;
   bool _typingDelayComplete = false;
   late String _dadName;
-  late AssetImage _dadImage;
+  late Image _dadImage;
 
   List<Widget> _tabChildren = [
     AboutPage(),
@@ -58,14 +58,26 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
         extendBody: false,
         appBar: AppBar(
           title: Text(
-            "A LAUGH A DAY",
+            _selectedTab == 0
+                ? "A LAUGH A DAY"
+                : _selectedTab == 1
+                    ? "ABOUT"
+                    : "CONTACT",
             style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Futura',
-                letterSpacing: 9),
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Futura',
+              letterSpacing: 9,
+              shadows: [
+                Shadow(
+                  offset: Offset(1.5, 1.5),
+                  blurRadius: 3.0,
+                  color: Color.fromARGB(255, 0, 0, 0),
+                ),
+              ],
+            ),
           ),
           centerTitle: true,
-          backgroundColor: Color.fromARGB(255, 44, 44, 44),
+          backgroundColor: Color.fromARGB(255, 32, 32, 32),
           foregroundColor: Color.fromARGB(207, 0, 221, 207),
           elevation: 8,
           shadowColor: Color.fromARGB(255, 0, 0, 0),
@@ -84,7 +96,7 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
           child: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
             onTap: (index) => _changeTab(index),
-            backgroundColor: Color.fromARGB(255, 34, 34, 34),
+            backgroundColor: Color.fromARGB(255, 32, 32, 32),
             currentIndex: _selectedTab,
             selectedItemColor: Color.fromARGB(207, 0, 221, 207),
             unselectedItemColor: Colors.black,
@@ -104,7 +116,6 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
                 label: "Contact",
               ),
             ],
-            elevation: 20,
           ),
         ),
       ),

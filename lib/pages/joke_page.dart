@@ -12,10 +12,11 @@ import '../utils/joke_utils.dart';
 import '../widgets/dad_message_box_widget.dart';
 import '../widgets/typing_indicator/typing_indicator.dart';
 
+// ignore: must_be_immutable
 class JokePage extends StatefulWidget {
   JokeObject joke;
   String dadName;
-  AssetImage dadImage;
+  Image dadImage;
   bool typingDelayComplete;
 
   JokePage({
@@ -48,14 +49,22 @@ class _JokePageState extends State<JokePage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration:
-          const BoxDecoration(color: Color.fromARGB(238, 3, 4, 6), boxShadow: [
-        CustomBoxShadow(
-            color: Constants.PRIMARY_BLACK,
-            offset: Offset(0.5, 0.5),
-            blurRadius: 10.0,
-            blurStyle: BlurStyle.outer)
-      ]),
+      decoration: BoxDecoration(
+        color: Color.fromARGB(238, 3, 4, 6),
+        boxShadow: [
+          CustomBoxShadow(
+              color: Constants.PRIMARY_BLACK,
+              offset: Offset(0.5, 0.5),
+              blurRadius: 10.0,
+              blurStyle: BlurStyle.outer)
+        ],
+        image: DecorationImage(
+          image:
+              AssetImage(Constants.assetsBackgroundImages + 'lights_night.jpg'),
+          fit: BoxFit.cover,
+          opacity: 0.25,
+        ),
+      ),
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -68,7 +77,7 @@ class _JokePageState extends State<JokePage> {
               child: widget.typingDelayComplete && mounted
                   ? Container(
                       decoration: const BoxDecoration(
-                          color: Color.fromARGB(18, 203, 203, 203),
+                          color: Color.fromARGB(223, 29, 29, 29),
                           borderRadius: BorderRadius.all(Radius.circular(5)),
                           boxShadow: [
                             CustomBoxShadow(

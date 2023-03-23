@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:a_laugh_a_day/utils/joke_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:a_laugh_a_day/utils/constants.dart' as Constants;
 import 'package:intl/intl.dart';
@@ -10,7 +9,7 @@ import 'custom_box_shadow/custom_box_shadow.dart';
 class DadMessageBoxWidget extends StatefulWidget {
   final String dadName;
   final String jokeText;
-  final AssetImage dadImage;
+  final Image dadImage;
 
   const DadMessageBoxWidget({
     Key? key,
@@ -25,7 +24,6 @@ class DadMessageBoxWidget extends StatefulWidget {
 
 class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
   Random rnd = Random();
-  String imageId = '1x7krU-0UwcIs_IguBVoo4ZyzCbLCKK4G';
 
   @override
   Widget build(BuildContext context) {
@@ -83,18 +81,24 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
                               Padding(
                                 padding: const EdgeInsets.only(right: 8.0),
                                 child: CircleAvatar(
-                                  backgroundImage: widget.dadImage,
+                                  backgroundImage: widget.dadImage.image,
                                   radius: 25,
                                 ),
                               ),
                               Text(
                                 '${widget.dadName}',
                                 style: const TextStyle(
-                                  fontFamily: 'Futura',
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 20,
-                                  color: Colors.white,
-                                ),
+                                    fontFamily: 'Futura',
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 20,
+                                    color: Colors.white,
+                                    shadows: [
+                                      Shadow(
+                                        offset: Offset(1.5, 1.5),
+                                        blurRadius: 3.0,
+                                        color: Color.fromARGB(255, 0, 0, 0),
+                                      ),
+                                    ]),
                               ),
                             ],
                           ),
@@ -105,11 +109,17 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
                           child: Text(
                             widget.jokeText,
                             style: const TextStyle(
-                              fontFamily: 'Futura',
-                              fontSize: 22,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w300,
-                            ),
+                                fontFamily: 'Futura',
+                                fontSize: 22,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w300,
+                                shadows: [
+                                  Shadow(
+                                    offset: Offset(1.5, 1.5),
+                                    blurRadius: 3.0,
+                                    color: Color.fromARGB(255, 0, 0, 0),
+                                  ),
+                                ]),
                           ),
                         ),
                       ],

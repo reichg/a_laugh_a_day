@@ -29,7 +29,7 @@ String getDadName() {
   return Constants.DAD_NAMES.elementAt(rnd.nextInt(Constants.DAD_NAMES.length));
 }
 
-AssetImage getDadImage() {
-  return AssetImage(
+Image getDadImage() {
+  return Image.asset(
       Constants.DAD_PHOTOS.elementAt(rnd.nextInt(Constants.DAD_PHOTOS.length)));
 }

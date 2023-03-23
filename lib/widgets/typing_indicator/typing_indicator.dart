@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:a_laugh_a_day/widgets/typing_indicator/status_bubble.dart';
-import 'package:a_laugh_a_day/utils/constants.dart' as Constants;
 
 import 'animated_bubble.dart';
 import 'circle_bubble.dart';
