@@ -1,10 +1,14 @@
 import 'dart:math';
 
 import 'package:a_laugh_a_day/icon_classes/app_icons.dart';
+import 'package:a_laugh_a_day/models/joke.dart';
 import 'package:a_laugh_a_day/pages/about.dart';
 import 'package:a_laugh_a_day/pages/contact.dart';
 import 'package:a_laugh_a_day/pages/joke_page.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+import 'utils/joke_utils.dart';
 
 class JokeGeneratorHome extends StatefulWidget {
   const JokeGeneratorHome({Key? key}) : super(key: key);
@@ -16,12 +20,35 @@ class JokeGeneratorHome extends StatefulWidget {
 class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
   Random rnd = Random();
   int _selectedTab = 0;
+  late JokeObject _joke;
+  bool _typingDelayComplete = false;
+  late String _dadName;
+  late AssetImage _dadImage;
 
-  final _tabChildren = [
-    JokePage(),
+  List<Widget> _tabChildren = [
     AboutPage(),
     ContactPage(),
   ];
+
+  @override
+  void initState() {
+    fetchJokeJson(http.Client()).then((value) {
+      setState(() {
+        _joke = value;
+        _dadName = getDadName();
+        _dadImage = getDadImage();
+        _tabChildren.insert(
+            0,
+            JokePage(
+              dadImage: _dadImage,
+              dadName: _dadName,
+              joke: _joke,
+              typingDelayComplete: _typingDelayComplete,
+            ));
+      });
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

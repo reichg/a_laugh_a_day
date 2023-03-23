@@ -1,19 +1,29 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:math';
 
-import 'package:a_laugh_a_day/widgets/custom_box_shadow/custom_box_shadow.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
 import 'package:a_laugh_a_day/utils/constants.dart' as Constants;
+import 'package:a_laugh_a_day/widgets/custom_box_shadow/custom_box_shadow.dart';
 
 import '../models/joke.dart';
 import '../utils/joke_utils.dart';
-import 'package:http/http.dart' as http;
-
 import '../widgets/dad_message_box_widget.dart';
 import '../widgets/typing_indicator/typing_indicator.dart';
 
 class JokePage extends StatefulWidget {
+  JokeObject joke;
+  String dadName;
+  AssetImage dadImage;
+  bool typingDelayComplete;
+
   JokePage({
     Key? key,
+    required this.joke,
+    required this.dadName,
+    required this.dadImage,
+    required this.typingDelayComplete,
   }) : super(key: key);
 
   @override
@@ -22,24 +32,15 @@ class JokePage extends StatefulWidget {
 
 class _JokePageState extends State<JokePage> {
   Random rnd = Random();
-  final Set<JokeObject> _jokes = <JokeObject>{};
-  late String dadName;
-  late AssetImage dadImage;
-  bool _typingDelayComplete = false;
 
   @override
   void initState() {
-    fetchJokeJson(http.Client()).then((value) {
-      Future.delayed(Duration(milliseconds: setDelayMilliseconds()), () {
-        mounted
-            ? setState(() {
-                _jokes.add(value.first);
-                _typingDelayComplete = true;
-                dadName = getDadName();
-                dadImage = getDadImage();
-              })
-            : null;
-      });
+    Future.delayed(Duration(milliseconds: _setDelayMilliseconds()), () {
+      mounted
+          ? setState(() {
+              widget.typingDelayComplete = true;
+            })
+          : null;
     });
     super.initState();
   }
@@ -64,7 +65,7 @@ class _JokePageState extends State<JokePage> {
                 vertical: 10,
                 horizontal: 15,
               ),
-              child: _typingDelayComplete && mounted
+              child: widget.typingDelayComplete && mounted
                   ? Container(
                       decoration: const BoxDecoration(
                           color: Color.fromARGB(18, 203, 203, 203),
@@ -78,9 +79,9 @@ class _JokePageState extends State<JokePage> {
                           ]),
                       child: Center(
                         child: DadMessageBoxWidget(
-                          jokeText: _jokes.first.joke,
-                          dadName: dadName,
-                          dadImage: dadImage,
+                          jokeText: widget.joke.joke,
+                          dadName: widget.dadName,
+                          dadImage: widget.dadImage,
                         ),
                       ),
                     )
@@ -89,7 +90,7 @@ class _JokePageState extends State<JokePage> {
             Padding(
               padding: EdgeInsets.all(10),
               child: TypingIndicator(
-                showIndicator: !_typingDelayComplete,
+                showIndicator: !widget.typingDelayComplete,
               ),
             ),
             Padding(
@@ -104,18 +105,17 @@ class _JokePageState extends State<JokePage> {
                         shadowColor: Colors.black),
                     onPressed: () {
                       setState(() {
-                        _typingDelayComplete = false;
+                        widget.typingDelayComplete = false;
 
                         fetchJokeJson(http.Client()).then((value) {
                           Future.delayed(
-                              Duration(milliseconds: setDelayMilliseconds()),
+                              Duration(milliseconds: _setDelayMilliseconds()),
                               () {
                             setState(() {
-                              _jokes.clear();
-                              _jokes.add(value.first);
-                              _typingDelayComplete = true;
-                              dadName = getDadName();
-                              dadImage = getDadImage();
+                              widget.joke = value;
+                              widget.typingDelayComplete = true;
+                              widget.dadName = getDadName();
+                              widget.dadImage = getDadImage();
                             });
                           });
                         });
@@ -141,7 +141,7 @@ class _JokePageState extends State<JokePage> {
     );
   }
 
-  int setDelayMilliseconds() {
+  int _setDelayMilliseconds() {
     //typing indicator delay range
     int min = 1500;
     int max = 2850;
