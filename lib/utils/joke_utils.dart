@@ -1,21 +1,44 @@
 import 'dart:convert';
+import 'dart:math';
+
+import 'package:flutter/cupertino.dart';
 
 import '../models/joke.dart';
 import 'package:http/http.dart' as http;
 import 'package:a_laugh_a_day/utils/constants.dart' as Constants;
 
-Future<Set<JokeObject>> fetchJokeJson(http.Client client) async {
+Random rnd = Random();
+
+Future<JokeObject> fetchJokeJson(http.Client client) async {
   const url = 'https://icanhazdadjoke.com/';
-  final headers = {"Accept": "application/json"};
+  final headers = {
+    "Accept": "application/json",
+    "User-Agent": "A Laugh A Day (evolutionary.eyes@gmail.com)"
+  };
   final response = await client.get(Uri.parse(url), headers: headers);
-  Set<JokeObject> jokeJsonObjectSet = <JokeObject>{};
+  late JokeObject jokeJsonObject;
 
   if (response.statusCode == 200) {
-    if (jokeJsonObjectSet.isNotEmpty) {
-      jokeJsonObjectSet.clear();
-    }
     var jokeJson = json.decode(response.body);
-    jokeJsonObjectSet.add(JokeObject.fromJson(jokeJson));
+    jokeJsonObject = JokeObject.fromJson(jokeJson);
   }
-  return jokeJsonObjectSet;
+  return jokeJsonObject;
+}
+
+String getDadName() {
+  return Constants.DAD_NAMES.elementAt(rnd.nextInt(Constants.DAD_NAMES.length));
+}
+
+Future<Image> getDadImage() async {
+  return await Image.asset(
+      Constants.DAD_PHOTOS.elementAt(rnd.nextInt(Constants.DAD_PHOTOS.length)));
+}
+
+int setDelayMilliseconds() {
+  //typing indicator delay range
+  int min = 1500;
+  int max = 2850;
+
+  var delayMillis = min + rnd.nextInt(max - min);
+  return delayMillis;
 }
