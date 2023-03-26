@@ -1,5 +1,4 @@
-import 'dart:math';
-
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:a_laugh_a_day/utils/constants.dart' as Constants;
 import 'package:intl/intl.dart';
@@ -23,8 +22,6 @@ class DadMessageBoxWidget extends StatefulWidget {
 }
 
 class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
-  Random rnd = Random();
-
   @override
   Widget build(BuildContext context) {
     DateTime currentDate = DateTime.now();
@@ -47,7 +44,7 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
                   child: Text(
                     "$dateDayName $dateMonthName $dateDayAbb",
                     style: TextStyle(
-                      color: Color.fromARGB(176, 255, 255, 255),
+                      color: Constants.PRIMARY_TEXT,
                       fontFamily: 'Futura',
                       fontSize: 13,
                     ),
@@ -81,6 +78,7 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
                               Padding(
                                 padding: const EdgeInsets.only(right: 8.0),
                                 child: CircleAvatar(
+                                  backgroundColor: Colors.transparent,
                                   backgroundImage: widget.dadImage.image,
                                   radius: 25,
                                 ),
@@ -91,12 +89,12 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
                                     fontFamily: 'Futura',
                                     fontWeight: FontWeight.w600,
                                     fontSize: 20,
-                                    color: Colors.white,
+                                    color: Constants.PRIMARY_TEXT,
                                     shadows: [
                                       Shadow(
                                         offset: Offset(1.5, 1.5),
                                         blurRadius: 3.0,
-                                        color: Color.fromARGB(255, 0, 0, 0),
+                                        color: Constants.PRIMARY_BLACK,
                                       ),
                                     ]),
                               ),
@@ -106,18 +104,20 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
                         Padding(
                           padding: const EdgeInsets.symmetric(
                               vertical: 15, horizontal: 15),
-                          child: Text(
+                          child: AutoSizeText(
+                            minFontSize: 16,
+                            maxLines: 11,
                             widget.jokeText,
                             style: const TextStyle(
                                 fontFamily: 'Futura',
                                 fontSize: 22,
-                                color: Colors.white,
+                                color: Constants.PRIMARY_TEXT,
                                 fontWeight: FontWeight.w300,
                                 shadows: [
                                   Shadow(
                                     offset: Offset(1.5, 1.5),
                                     blurRadius: 3.0,
-                                    color: Color.fromARGB(255, 0, 0, 0),
+                                    color: Constants.PRIMARY_BLACK,
                                   ),
                                 ]),
                           ),
@@ -134,7 +134,7 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
                   child: Text(
                     "Received: $dateHour",
                     style: TextStyle(
-                        color: Color.fromARGB(176, 255, 255, 255),
+                        color: Constants.PRIMARY_TEXT,
                         fontFamily: 'Futura',
                         fontSize: 13),
                   ),

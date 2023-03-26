@@ -5,10 +5,12 @@ import 'package:a_laugh_a_day/models/joke.dart';
 import 'package:a_laugh_a_day/pages/about.dart';
 import 'package:a_laugh_a_day/pages/contact.dart';
 import 'package:a_laugh_a_day/pages/joke_page.dart';
+import 'package:a_laugh_a_day/widgets/intial_load/initial_load.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:a_laugh_a_day/utils/constants.dart' as Constants;
 
-import 'utils/joke_utils.dart';
+import '../utils/joke_utils.dart';
 
 class JokeGeneratorHome extends StatefulWidget {
   const JokeGeneratorHome({Key? key}) : super(key: key);
@@ -32,19 +34,21 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
 
   @override
   void initState() {
-    fetchJokeJson(http.Client()).then((value) {
-      setState(() {
-        _joke = value;
-        _dadName = getDadName();
-        _dadImage = getDadImage();
-        _tabChildren.insert(
-            0,
-            JokePage(
-              dadImage: _dadImage,
-              dadName: _dadName,
-              joke: _joke,
-              typingDelayComplete: _typingDelayComplete,
-            ));
+    fetchJokeJson(http.Client()).then((joke) {
+      getDadImage().then((value) {
+        setState(() {
+          _joke = joke;
+          _dadName = getDadName();
+          _dadImage = value;
+          _tabChildren.insert(
+              0,
+              JokePage(
+                dadImage: _dadImage,
+                dadName: _dadName,
+                joke: _joke,
+                typingDelayComplete: _typingDelayComplete,
+              ));
+        });
       });
     });
     super.initState();
@@ -71,35 +75,43 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
                 Shadow(
                   offset: Offset(1.5, 1.5),
                   blurRadius: 3.0,
-                  color: Color.fromARGB(255, 0, 0, 0),
+                  color: Constants.PRIMARY_BLACK,
                 ),
               ],
             ),
           ),
           centerTitle: true,
-          backgroundColor: Color.fromARGB(255, 32, 32, 32),
-          foregroundColor: Color.fromARGB(207, 0, 221, 207),
-          elevation: 8,
-          shadowColor: Color.fromARGB(255, 0, 0, 0),
+          backgroundColor: Constants.PRIMARY_GREY,
+          foregroundColor: Constants.PRIMARY_AQUA,
+          elevation: 5,
+          shadowColor: Constants.PRIMARY_BLACK,
+          shape: Border(
+            bottom: BorderSide(
+              color: Color.fromARGB(210, 0, 0, 0),
+              width: 0.5,
+            ),
+          ),
         ),
-        body: _tabChildren[_selectedTab],
+        body: _tabChildren.length > 2 && mounted
+            ? _tabChildren[_selectedTab]
+            : InitialScreen(),
         bottomNavigationBar: Container(
           decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
-                color: Color.fromARGB(148, 0, 0, 0),
+                color: Constants.PRIMARY_BLACK,
                 blurRadius: 10,
-                offset: Offset(0, -5),
+                offset: Offset(0, -3),
               ),
             ],
           ),
           child: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
             onTap: (index) => _changeTab(index),
-            backgroundColor: Color.fromARGB(255, 32, 32, 32),
+            backgroundColor: Constants.PRIMARY_GREY,
             currentIndex: _selectedTab,
-            selectedItemColor: Color.fromARGB(207, 0, 221, 207),
-            unselectedItemColor: Colors.black,
+            selectedItemColor: Constants.PRIMARY_AQUA,
+            unselectedItemColor: Constants.PRIMARY_BLACK,
             showSelectedLabels: false,
             showUnselectedLabels: false,
             items: [

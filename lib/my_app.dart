@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:a_laugh_a_day/home_page.dart';
+import 'package:a_laugh_a_day/pages/home_page.dart';
 
 class MyApp extends StatefulWidget {
   MyApp({Key? key}) : super(key: key);

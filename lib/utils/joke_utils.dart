@@ -29,7 +29,16 @@ String getDadName() {
   return Constants.DAD_NAMES.elementAt(rnd.nextInt(Constants.DAD_NAMES.length));
 }
 
-Image getDadImage() {
-  return Image.asset(
+Future<Image> getDadImage() async {
+  return await Image.asset(
       Constants.DAD_PHOTOS.elementAt(rnd.nextInt(Constants.DAD_PHOTOS.length)));
+}
+
+int setDelayMilliseconds() {
+  //typing indicator delay range
+  int min = 1500;
+  int max = 2850;
+
+  var delayMillis = min + rnd.nextInt(max - min);
+  return delayMillis;
 }

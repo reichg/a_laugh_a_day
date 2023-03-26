@@ -16,8 +16,11 @@ var DAD_NAMES = <String>[
 ];
 
 const Color PRIMARY_BLACK = Colors.black;
-const Color PRIMARY_AQUA = Color.fromARGB(255, 0, 160, 112);
-const Color PRIMARY_GRADIENT_GREY = Color.fromARGB(255, 32, 32, 32);
+const Color PRIMARY_AQUA = Color.fromARGB(255, 0, 188, 176);
+const Color PRIMARY_TEXT = Color.fromARGB(189, 255, 255, 255);
+const Color PRIMARY_GREY = Color.fromARGB(255, 27, 27, 27);
+const Color TRANSPARENT_BG_DARK_GREY = Color.fromARGB(238, 3, 4, 6);
+const Color TRANSPARENT_BG_LIGHTER_GREY = Color.fromARGB(223, 29, 29, 29);
 
 String assetsDadPhotos = "assets/photos/dad_photos/";
 var DAD_PHOTOS = [
