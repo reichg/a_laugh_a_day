@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 
 import 'custom_box_shadow/custom_box_shadow.dart';
 
-class DadMessageBoxWidget extends StatelessWidget {
+class DadMessageBoxWidget extends StatefulWidget {
   final String dadName;
   final String jokeText;
   final Image dadImage;
@@ -17,6 +17,11 @@ class DadMessageBoxWidget extends StatelessWidget {
     required this.dadImage,
   }) : super(key: key);
 
+  @override
+  State<DadMessageBoxWidget> createState() => _DadMessageBoxWidgetState();
+}
+
+class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
   @override
   Widget build(BuildContext context) {
     DateTime currentDate = DateTime.now();
@@ -39,7 +44,7 @@ class DadMessageBoxWidget extends StatelessWidget {
                   child: Text(
                     "$dateDayName $dateMonthName $dateDayAbb",
                     style: TextStyle(
-                      color: Color.fromARGB(176, 255, 255, 255),
+                      color: Constants.PRIMARY_TEXT,
                       fontFamily: 'Futura',
                       fontSize: 13,
                     ),
@@ -73,22 +78,23 @@ class DadMessageBoxWidget extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.only(right: 8.0),
                                 child: CircleAvatar(
-                                  backgroundImage: dadImage.image,
+                                  backgroundColor: Colors.transparent,
+                                  backgroundImage: widget.dadImage.image,
                                   radius: 25,
                                 ),
                               ),
                               Text(
-                                '${dadName}',
+                                '${widget.dadName}',
                                 style: const TextStyle(
                                     fontFamily: 'Futura',
                                     fontWeight: FontWeight.w600,
                                     fontSize: 20,
-                                    color: Colors.white,
+                                    color: Constants.PRIMARY_TEXT,
                                     shadows: [
                                       Shadow(
                                         offset: Offset(1.5, 1.5),
                                         blurRadius: 3.0,
-                                        color: Color.fromARGB(255, 0, 0, 0),
+                                        color: Constants.PRIMARY_BLACK,
                                       ),
                                     ]),
                               ),
@@ -101,17 +107,17 @@ class DadMessageBoxWidget extends StatelessWidget {
                           child: AutoSizeText(
                             minFontSize: 16,
                             maxLines: 11,
-                            jokeText,
+                            widget.jokeText,
                             style: const TextStyle(
                                 fontFamily: 'Futura',
                                 fontSize: 22,
-                                color: Colors.white,
+                                color: Constants.PRIMARY_TEXT,
                                 fontWeight: FontWeight.w300,
                                 shadows: [
                                   Shadow(
                                     offset: Offset(1.5, 1.5),
                                     blurRadius: 3.0,
-                                    color: Color.fromARGB(255, 0, 0, 0),
+                                    color: Constants.PRIMARY_BLACK,
                                   ),
                                 ]),
                           ),
@@ -128,7 +134,7 @@ class DadMessageBoxWidget extends StatelessWidget {
                   child: Text(
                     "Received: $dateHour",
                     style: TextStyle(
-                        color: Color.fromARGB(176, 255, 255, 255),
+                        color: Constants.PRIMARY_TEXT,
                         fontFamily: 'Futura',
                         fontSize: 13),
                   ),

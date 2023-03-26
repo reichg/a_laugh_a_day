@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:a_laugh_a_day/utils/constants.dart' as Constants;
 
 class AboutDescription extends StatelessWidget {
   const AboutDescription({Key? key}) : super(key: key);
@@ -19,12 +20,12 @@ class AboutDescription extends StatelessWidget {
             style: TextStyle(
               fontFamily: 'Futura',
               fontSize: 20,
-              color: Color.fromARGB(189, 255, 255, 255),
+              color: Constants.PRIMARY_TEXT,
               shadows: [
                 Shadow(
                   offset: Offset(2, 2),
                   blurRadius: 3.0,
-                  color: Color.fromARGB(255, 0, 0, 0),
+                  color: Constants.PRIMARY_BLACK,
                 ),
               ],
             ),

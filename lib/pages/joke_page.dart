@@ -48,10 +48,9 @@ class _JokePageState extends State<JokePage> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.dadImage);
     return Container(
       decoration: BoxDecoration(
-        color: Color.fromARGB(238, 3, 4, 6),
+        color: Constants.TRANSPARENT_BG_DARK_GREY,
         boxShadow: [
           CustomBoxShadow(
               color: Constants.PRIMARY_BLACK,
@@ -78,11 +77,11 @@ class _JokePageState extends State<JokePage> {
               child: widget.typingDelayComplete && mounted
                   ? Container(
                       decoration: const BoxDecoration(
-                          color: Color.fromARGB(223, 29, 29, 29),
+                          color: Constants.TRANSPARENT_BG_LIGHTER_GREY,
                           borderRadius: BorderRadius.all(Radius.circular(5)),
                           boxShadow: [
                             CustomBoxShadow(
-                                color: Color.fromARGB(255, 0, 0, 0),
+                                color: Constants.PRIMARY_BLACK,
                                 offset: Offset(1.5, 1.5),
                                 blurRadius: 10,
                                 blurStyle: BlurStyle.outer)
@@ -108,41 +107,44 @@ class _JokePageState extends State<JokePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        elevation: 5,
-                        primary: Color.fromARGB(207, 0, 221, 207),
-                        shadowColor: Colors.black),
-                    onPressed: () {
-                      setState(() {
-                        widget.typingDelayComplete = false;
-
-                        fetchJokeJson(http.Client()).then((value) {
-                          widget.joke = value;
-                          widget.dadName = getDadName();
-                          getDadImage()
-                              .then((value) => widget.dadImage = value);
-                          Future.delayed(
-                              Duration(milliseconds: setDelayMilliseconds()),
-                              () {
+                  widget.typingDelayComplete
+                      ? ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              elevation: 5,
+                              primary: Constants.PRIMARY_AQUA,
+                              shadowColor: Colors.black),
+                          onPressed: () {
                             setState(() {
-                              widget.typingDelayComplete = true;
+                              widget.typingDelayComplete = false;
+
+                              fetchJokeJson(http.Client()).then((value) {
+                                widget.joke = value;
+                                widget.dadName = getDadName();
+                                getDadImage()
+                                    .then((value) => widget.dadImage = value);
+                                Future.delayed(
+                                    Duration(
+                                        milliseconds: setDelayMilliseconds()),
+                                    () {
+                                  setState(() {
+                                    widget.typingDelayComplete = true;
+                                  });
+                                });
+                              });
                             });
-                          });
-                        });
-                      });
-                    },
-                    child: const Text(
-                      "Another Laugh?",
-                      style: TextStyle(
-                        fontFamily: 'Futura',
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                        color: Constants.PRIMARY_BLACK,
-                        letterSpacing: 3,
-                      ),
-                    ),
-                  ),
+                          },
+                          child: const Text(
+                            "Another Laugh?",
+                            style: TextStyle(
+                              fontFamily: 'Futura',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                              color: Constants.PRIMARY_BLACK,
+                              letterSpacing: 3,
+                            ),
+                          ),
+                        )
+                      : SizedBox(),
                 ],
               ),
             ),

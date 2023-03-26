@@ -14,10 +14,6 @@ class JokeSource extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
-        color: Color.fromARGB(0, 0, 0, 0),
-        border: Border.all(
-          color: Color.fromARGB(62, 0, 0, 0),
-        ),
         boxShadow: const [
           CustomBoxShadow(
               color: Constants.PRIMARY_BLACK,
@@ -37,12 +33,12 @@ class JokeSource extends StatelessWidget {
                   fontFamily: 'Futura',
                   fontWeight: FontWeight.w600,
                   fontSize: 16,
-                  color: Color.fromARGB(189, 255, 255, 255),
+                  color: Constants.PRIMARY_TEXT,
                   shadows: [
                     Shadow(
                       offset: Offset(2, 2),
                       blurRadius: 3.0,
-                      color: Color.fromARGB(255, 0, 0, 0),
+                      color: Constants.PRIMARY_BLACK,
                     ),
                   ]),
             ),
@@ -57,12 +53,12 @@ class JokeSource extends StatelessWidget {
                     fontFamily: 'Futura',
                     fontWeight: FontWeight.w600,
                     fontSize: 16,
-                    color: Color.fromARGB(189, 255, 255, 255),
+                    color: Constants.PRIMARY_TEXT,
                     shadows: [
                       Shadow(
                         offset: Offset(2, 2),
                         blurRadius: 3.0,
-                        color: Color.fromARGB(255, 0, 0, 0),
+                        color: Constants.PRIMARY_BLACK,
                       ),
                     ]),
               ),
@@ -73,10 +69,19 @@ class JokeSource extends StatelessWidget {
                       .then(
                           (value) => ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
-                                  content: Text("copied website to clipboard"),
+                                  content: Text(
+                                    "Copied Website To Clipboard",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Constants.PRIMARY_BLACK,
+                                      fontFamily: 'Futura',
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
                                   duration: Duration(
                                     milliseconds: 1250,
                                   ),
+                                  backgroundColor: Constants.PRIMARY_AQUA,
                                 ),
                               ));
                 },

@@ -12,7 +12,7 @@ class AboutPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Color.fromARGB(238, 3, 4, 6),
+        color: Constants.TRANSPARENT_BG_DARK_GREY,
         boxShadow: [
           CustomBoxShadow(
               color: Constants.PRIMARY_BLACK,
@@ -34,10 +34,10 @@ class AboutPage extends StatelessWidget {
             child: Container(
               margin: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
               decoration: BoxDecoration(
-                color: Color.fromARGB(200, 29, 29, 29),
+                color: Constants.TRANSPARENT_BG_LIGHTER_GREY,
                 boxShadow: [
                   CustomBoxShadow(
-                      color: Color.fromARGB(255, 0, 0, 0),
+                      color: Constants.PRIMARY_BLACK,
                       offset: Offset(0.5, 0.5),
                       blurRadius: 10.0,
                       blurStyle: BlurStyle.outer)
@@ -47,21 +47,21 @@ class AboutPage extends StatelessWidget {
               child: Column(
                 children: [
                   Divider(
-                    color: Color.fromARGB(207, 0, 221, 207),
+                    color: Constants.PRIMARY_AQUA,
                     thickness: 3,
                     indent: 8,
                     endIndent: 8,
                   ),
                   AboutDescription(),
                   Divider(
-                    color: Color.fromARGB(207, 0, 221, 207),
+                    color: Constants.PRIMARY_AQUA,
                     thickness: 3,
                     indent: 8,
                     endIndent: 8,
                   ),
                   JokeSource(),
                   Divider(
-                    color: Color.fromARGB(207, 0, 221, 207),
+                    color: Constants.PRIMARY_AQUA,
                     thickness: 3,
                     indent: 8,
                     endIndent: 8,

@@ -14,16 +14,13 @@ class VenmoContact extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
-        color: Color.fromARGB(0, 0, 0, 0),
-        border: Border.all(
-          color: Color.fromARGB(62, 0, 0, 0),
-        ),
+        color: Colors.transparent,
         boxShadow: [
           CustomBoxShadow(
               color: Constants.PRIMARY_BLACK,
-              offset: Offset(0.5, 0.5),
-              blurRadius: 10.0,
-              blurStyle: BlurStyle.outer)
+              offset: Offset(0, 1),
+              blurRadius: 10,
+              blurStyle: BlurStyle.outer),
         ],
       ),
       child: Row(
@@ -43,12 +40,12 @@ class VenmoContact extends StatelessWidget {
                 fontFamily: 'Futura',
                 fontWeight: FontWeight.w600,
                 fontSize: 16,
-                color: Color.fromARGB(189, 255, 255, 255),
+                color: Constants.PRIMARY_TEXT,
                 shadows: [
                   Shadow(
                     offset: Offset(2, 2),
                     blurRadius: 3.0,
-                    color: Color.fromARGB(255, 0, 0, 0),
+                    color: Constants.PRIMARY_BLACK,
                   ),
                 ]),
           ),
@@ -61,10 +58,19 @@ class VenmoContact extends StatelessWidget {
               await Clipboard.setData(ClipboardData(text: "$venmoHandle"))
                   .then((value) => ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
-                          content: Text("copied venmo handle to clipboard"),
+                          content: Text(
+                            "Copied Venmo Handle To Clipboard",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Constants.PRIMARY_BLACK,
+                              fontFamily: 'Futura',
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                           duration: Duration(
                             milliseconds: 1250,
                           ),
+                          backgroundColor: Constants.PRIMARY_AQUA,
                         ),
                       ));
             },
