@@ -1,6 +1,9 @@
+// ignore_for_file: overridden_fields
+
 import 'package:flutter/material.dart';
 
 class CustomBoxShadow extends BoxShadow {
+  @override
   final BlurStyle blurStyle;
 
   const CustomBoxShadow({
@@ -14,7 +17,7 @@ class CustomBoxShadow extends BoxShadow {
   Paint toPaint() {
     final Paint result = Paint()
       ..color = color
-      ..maskFilter = MaskFilter.blur(this.blurStyle, blurSigma);
+      ..maskFilter = MaskFilter.blur(blurStyle, blurSigma);
     assert(() {
       if (debugDisableShadows) result.maskFilter = null;
       return true;

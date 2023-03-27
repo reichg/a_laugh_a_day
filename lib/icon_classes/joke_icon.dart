@@ -11,7 +11,7 @@
 ///      fonts:
 ///       - asset: fonts/MyFlutterApp.ttf
 ///
-/// 
+///
 /// * Fontelico, Copyright (C) 2012 by Fontello project
 ///         Author:    Crowdsourced, for Fontello project
 ///         License:   SIL (http://scripts.sil.org/OFL)
@@ -19,11 +19,13 @@
 ///
 import 'package:flutter/widgets.dart';
 
-class MyFlutterApp {
-  MyFlutterApp._();
+class JokeIcon {
+  JokeIcon._();
 
-  static const _kFontFam = 'MyFlutterApp';
+  static const _kFontFam = 'JokeIcon';
   static const String? _kFontPkg = null;
 
-  static const IconData emo_thumbsup = IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  // ignore: constant_identifier_names
+  static const IconData joke_icon =
+      IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

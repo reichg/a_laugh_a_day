@@ -11,7 +11,7 @@ class JokeSource extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+      margin: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
         boxShadow: const [
@@ -24,8 +24,8 @@ class JokeSource extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
             child: Text(
               "Where Do The Jokes Come From?",
               textAlign: TextAlign.center,
@@ -47,9 +47,9 @@ class JokeSource extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "$dadJokeSource",
+                dadJokeSource,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                     fontFamily: 'Futura',
                     fontWeight: FontWeight.w600,
                     fontSize: 16,
@@ -63,12 +63,12 @@ class JokeSource extends StatelessWidget {
                     ]),
               ),
               IconButton(
-                icon: Icon(Icons.copy),
+                icon: const Icon(Icons.copy),
                 onPressed: () async {
-                  await Clipboard.setData(ClipboardData(text: "$dadJokeSource"))
+                  await Clipboard.setData(ClipboardData(text: dadJokeSource))
                       .then(
                           (value) => ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
+                                const SnackBar(
                                   content: Text(
                                     "Copied Website To Clipboard",
                                     textAlign: TextAlign.center,

@@ -51,7 +51,7 @@ class _JokePageState extends State<JokePage> {
     return Container(
       decoration: BoxDecoration(
         color: Constants.TRANSPARENT_BG_DARK_GREY,
-        boxShadow: [
+        boxShadow: const [
           CustomBoxShadow(
               color: Constants.PRIMARY_BLACK,
               offset: Offset(0.5, 0.5),
@@ -60,7 +60,7 @@ class _JokePageState extends State<JokePage> {
         ],
         image: DecorationImage(
           image:
-              AssetImage(Constants.assetsBackgroundImages + 'lights_night.jpg'),
+              AssetImage('${Constants.assetsBackgroundImages}lights_night.jpg'),
           fit: BoxFit.cover,
           opacity: 0.25,
         ),
@@ -70,7 +70,7 @@ class _JokePageState extends State<JokePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 vertical: 10,
                 horizontal: 15,
               ),
@@ -97,13 +97,13 @@ class _JokePageState extends State<JokePage> {
                   : const SizedBox(),
             ),
             Padding(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: TypingIndicator(
                 showIndicator: !widget.typingDelayComplete,
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 40),
+              padding: const EdgeInsets.symmetric(vertical: 40),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -144,7 +144,7 @@ class _JokePageState extends State<JokePage> {
                             ),
                           ),
                         )
-                      : SizedBox(),
+                      : const SizedBox(),
                 ],
               ),
             ),

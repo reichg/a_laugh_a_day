@@ -1,3 +1,4 @@
+import 'package:a_laugh_a_day/icon_classes/venmo_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -11,11 +12,11 @@ class VenmoContact extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+      margin: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
         color: Colors.transparent,
-        boxShadow: [
+        boxShadow: const [
           CustomBoxShadow(
               color: Constants.PRIMARY_BLACK,
               offset: Offset(0, 1),
@@ -26,17 +27,18 @@ class VenmoContact extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Padding(
+          const Padding(
             padding: EdgeInsets.symmetric(horizontal: 8),
             child: Icon(
-              Icons.monetization_on_outlined,
+              Venmo.venmo,
               size: 30,
+              color: Constants.PRIMARY_BLACK,
             ),
           ),
           Text(
-            "$venmoHandle",
+            venmoHandle,
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
                 fontFamily: 'Futura',
                 fontWeight: FontWeight.w600,
                 fontSize: 16,
@@ -50,14 +52,14 @@ class VenmoContact extends StatelessWidget {
                 ]),
           ),
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.copy,
               size: 20,
             ),
             onPressed: () async {
-              await Clipboard.setData(ClipboardData(text: "$venmoHandle"))
+              await Clipboard.setData(ClipboardData(text: venmoHandle))
                   .then((value) => ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
+                        const SnackBar(
                           content: Text(
                             "Copied Venmo Handle To Clipboard",
                             textAlign: TextAlign.center,
