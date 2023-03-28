@@ -23,6 +23,7 @@ class DadMessageBoxWidget extends StatefulWidget {
 }
 
 class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
+  bool snackBarIsOpen = false;
   @override
   Widget build(BuildContext context) {
     DateTime currentDate = DateTime.now();
@@ -106,31 +107,46 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
                                   Icons.copy,
                                   size: 20,
                                 ),
-                                onPressed: () async {
-                                  await Clipboard.setData(
-                                          ClipboardData(text: widget.jokeText))
-                                      .then((value) =>
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(
-                                            const SnackBar(
-                                              content: Text(
-                                                "Copied Joke To Clipboard",
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                  color:
-                                                      Constants.PRIMARY_BLACK,
-                                                  fontFamily: 'Futura',
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                              duration: Duration(
-                                                milliseconds: 1250,
-                                              ),
-                                              backgroundColor:
-                                                  Constants.PRIMARY_AQUA,
-                                            ),
-                                          ));
-                                },
+                                onPressed: snackBarIsOpen
+                                    ? null
+                                    : () async {
+                                        setState(() {
+                                          snackBarIsOpen = true;
+                                        });
+                                        await Clipboard.setData(ClipboardData(
+                                                text: widget.jokeText))
+                                            .then((value) =>
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(
+                                                      const SnackBar(
+                                                        content: Text(
+                                                          "Copied Joke To Clipboard",
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          style: TextStyle(
+                                                            color: Constants
+                                                                .PRIMARY_BLACK,
+                                                            fontFamily:
+                                                                'Futura',
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
+                                                        ),
+                                                        duration: Duration(
+                                                          milliseconds: 1250,
+                                                        ),
+                                                        backgroundColor:
+                                                            Constants
+                                                                .PRIMARY_AQUA,
+                                                      ),
+                                                    )
+                                                    .closed
+                                                    .then(((value) {
+                                                  setState(() {
+                                                    snackBarIsOpen = false;
+                                                  });
+                                                })));
+                                      },
                               )
                             ],
                           ),

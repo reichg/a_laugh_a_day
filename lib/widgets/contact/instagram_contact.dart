@@ -5,9 +5,16 @@ import 'package:flutter/services.dart';
 import '../custom_box_shadow/custom_box_shadow.dart';
 import 'package:a_laugh_a_day/utils/constants.dart' as Constants;
 
-class InstagramContact extends StatelessWidget {
+class InstagramContact extends StatefulWidget {
   const InstagramContact({Key? key}) : super(key: key);
+
+  @override
+  State<InstagramContact> createState() => _InstagramContactState();
+}
+
+class _InstagramContactState extends State<InstagramContact> {
   final String instagramHandle = Constants.instagramHandle;
+  bool snackBarIsOpen = false;
 
   @override
   Widget build(BuildContext context) {
@@ -51,31 +58,43 @@ class InstagramContact extends StatelessWidget {
                 ]),
           ),
           IconButton(
-            icon: const Icon(
-              Icons.copy,
-              size: 20,
-            ),
-            onPressed: () async {
-              await Clipboard.setData(ClipboardData(text: instagramHandle))
-                  .then((value) => ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text(
-                            "Copied Instagram To Clipboard",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Constants.PRIMARY_BLACK,
-                              fontFamily: 'Futura',
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          duration: Duration(
-                            milliseconds: 1250,
-                          ),
-                          backgroundColor: Constants.PRIMARY_AQUA,
-                        ),
-                      ));
-            },
-          ),
+              icon: const Icon(
+                Icons.copy,
+                size: 20,
+              ),
+              onPressed: snackBarIsOpen
+                  ? null
+                  : () async {
+                      setState(() {
+                        snackBarIsOpen = true;
+                      });
+                      await Clipboard.setData(
+                              ClipboardData(text: instagramHandle))
+                          .then((value) => ScaffoldMessenger.of(context)
+                                  .showSnackBar(
+                                    const SnackBar(
+                                      content: Text(
+                                        "Copied Instagram To Clipboard",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Constants.PRIMARY_BLACK,
+                                          fontFamily: 'Futura',
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      duration: Duration(
+                                        milliseconds: 1250,
+                                      ),
+                                      backgroundColor: Constants.PRIMARY_AQUA,
+                                    ),
+                                  )
+                                  .closed
+                                  .then(((value) {
+                                setState(() {
+                                  snackBarIsOpen = false;
+                                });
+                              })));
+                    }),
         ],
       ),
     );

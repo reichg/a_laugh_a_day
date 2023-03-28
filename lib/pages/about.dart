@@ -45,22 +45,22 @@ class AboutPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(5),
               ),
               child: Column(
-                children: const [
-                  Divider(
+                children: [
+                  const Divider(
                     color: Constants.PRIMARY_AQUA,
                     thickness: 3,
                     indent: 8,
                     endIndent: 8,
                   ),
-                  AboutDescription(),
-                  Divider(
+                  const AboutDescription(),
+                  const Divider(
                     color: Constants.PRIMARY_AQUA,
                     thickness: 3,
                     indent: 8,
                     endIndent: 8,
                   ),
                   JokeSource(),
-                  Divider(
+                  const Divider(
                     color: Constants.PRIMARY_AQUA,
                     thickness: 3,
                     indent: 8,

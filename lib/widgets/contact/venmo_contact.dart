@@ -5,9 +5,16 @@ import 'package:flutter/services.dart';
 import '../custom_box_shadow/custom_box_shadow.dart';
 import 'package:a_laugh_a_day/utils/constants.dart' as Constants;
 
-class VenmoContact extends StatelessWidget {
+class VenmoContact extends StatefulWidget {
   const VenmoContact({Key? key}) : super(key: key);
+
+  @override
+  State<VenmoContact> createState() => _VenmoContactState();
+}
+
+class _VenmoContactState extends State<VenmoContact> {
   final String venmoHandle = Constants.venmoHandle;
+  bool snackBarIsOpen = false;
 
   @override
   Widget build(BuildContext context) {
@@ -56,26 +63,38 @@ class VenmoContact extends StatelessWidget {
               Icons.copy,
               size: 20,
             ),
-            onPressed: () async {
-              await Clipboard.setData(ClipboardData(text: venmoHandle))
-                  .then((value) => ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text(
-                            "Copied Venmo Handle To Clipboard",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Constants.PRIMARY_BLACK,
-                              fontFamily: 'Futura',
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          duration: Duration(
-                            milliseconds: 1250,
-                          ),
-                          backgroundColor: Constants.PRIMARY_AQUA,
-                        ),
-                      ));
-            },
+            onPressed: snackBarIsOpen
+                ? null
+                : () async {
+                    setState(() {
+                      snackBarIsOpen = true;
+                    });
+                    await Clipboard.setData(ClipboardData(text: venmoHandle))
+                        .then((value) => ScaffoldMessenger.of(context)
+                                .showSnackBar(
+                                  const SnackBar(
+                                    content: Text(
+                                      "Copied Venmo Handle To Clipboard",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        color: Constants.PRIMARY_BLACK,
+                                        fontFamily: 'Futura',
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    duration: Duration(
+                                      milliseconds: 1250,
+                                    ),
+                                    backgroundColor: Constants.PRIMARY_AQUA,
+                                  ),
+                                )
+                                .closed
+                                .then(((value) {
+                              setState(() {
+                                snackBarIsOpen = false;
+                              });
+                            })));
+                  },
           ),
         ],
       ),
