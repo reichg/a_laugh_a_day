@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 
 import '../models/joke.dart';
 import 'package:http/http.dart' as http;
@@ -30,8 +31,13 @@ String getDadName() {
 }
 
 Future<Image> getDadImage() async {
-  return await Image.asset(
-      Constants.DAD_PHOTOS.elementAt(rnd.nextInt(Constants.DAD_PHOTOS.length)));
+  List<String> images = json
+      .decode(await rootBundle.loadString('AssetManifest.json'))
+      .keys
+      .where((String key) => key.contains('assets/photos/dad_photos'))
+      .toList();
+
+  return Image.asset(images.elementAt(rnd.nextInt(images.length)));
 }
 
 int setDelayMilliseconds() {

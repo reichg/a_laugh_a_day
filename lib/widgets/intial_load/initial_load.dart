@@ -10,8 +10,8 @@ class InitialScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Color.fromARGB(238, 3, 4, 6),
-        boxShadow: [
+        color: const Color.fromARGB(238, 3, 4, 6),
+        boxShadow: const [
           CustomBoxShadow(
               color: Constants.PRIMARY_BLACK,
               offset: Offset(0.5, 0.5),
@@ -20,7 +20,7 @@ class InitialScreen extends StatelessWidget {
         ],
         image: DecorationImage(
           image:
-              AssetImage(Constants.assetsBackgroundImages + 'lights_night.jpg'),
+              AssetImage('${Constants.assetsBackgroundImages}lights_night.jpg'),
           fit: BoxFit.cover,
           opacity: 0.25,
         ),

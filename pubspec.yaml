@@ -40,6 +40,7 @@ dependencies:
   flutter_launcher_icons: ^0.11.0
   rename: ^2.1.1
   auto_size_text: ^3.0.0
+  flutter_lints: ^2.0.1
 
 dev_dependencies:
   flutter_test:
@@ -91,9 +92,18 @@ flutter:
     - family: Aleo-Regular
       fonts:
         - asset: assets/fonts/Aleo-Regular.otf
-    - family:  MyFlutterApp
+    - family: JokeIcon
       fonts:
-       - asset: assets/fonts/MyFlutterApp.ttf
+       - asset: assets/fonts/JokeIcon.ttf
+    - family: Venmo
+      fonts:
+       - asset: assets/fonts/Venmo.ttf
+    - family: InstagramIcon
+      fonts:
+       - asset: assets/fonts/InstagramIcon.ttf
+    - family: InstagramIconThick
+      fonts:
+       - asset: assets/fonts/InstagramIconThick.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

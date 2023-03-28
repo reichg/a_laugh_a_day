@@ -1,18 +1,19 @@
+import 'package:a_laugh_a_day/icon_classes/instagram_icon_thick.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../custom_box_shadow/custom_box_shadow.dart';
 import 'package:a_laugh_a_day/utils/constants.dart' as Constants;
 
-class EmailContact extends StatefulWidget {
-  const EmailContact({Key? key}) : super(key: key);
+class InstagramContact extends StatefulWidget {
+  const InstagramContact({Key? key}) : super(key: key);
 
   @override
-  State<EmailContact> createState() => _EmailContactState();
+  State<InstagramContact> createState() => _InstagramContactState();
 }
 
-class _EmailContactState extends State<EmailContact> {
-  final String email = Constants.email;
+class _InstagramContactState extends State<InstagramContact> {
+  final String instagramHandle = Constants.instagramHandle;
   bool snackBarIsOpen = false;
 
   @override
@@ -36,12 +37,12 @@ class _EmailContactState extends State<EmailContact> {
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 8),
             child: Icon(
-              Icons.email_outlined,
-              size: 30,
+              InstagramIconThick.instagram,
+              size: 37,
             ),
           ),
           Text(
-            email,
+            instagramHandle,
             textAlign: TextAlign.center,
             style: const TextStyle(
                 fontFamily: 'Futura',
@@ -67,12 +68,13 @@ class _EmailContactState extends State<EmailContact> {
                       setState(() {
                         snackBarIsOpen = true;
                       });
-                      await Clipboard.setData(ClipboardData(text: email))
+                      await Clipboard.setData(
+                              ClipboardData(text: instagramHandle))
                           .then((value) => ScaffoldMessenger.of(context)
                                   .showSnackBar(
                                     const SnackBar(
                                       content: Text(
-                                        "Copied Email To Clipboard",
+                                        "Copied Instagram To Clipboard",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           color: Constants.PRIMARY_BLACK,
@@ -87,11 +89,11 @@ class _EmailContactState extends State<EmailContact> {
                                     ),
                                   )
                                   .closed
-                                  .then((value) {
+                                  .then(((value) {
                                 setState(() {
                                   snackBarIsOpen = false;
                                 });
-                              }));
+                              })));
                     }),
         ],
       ),

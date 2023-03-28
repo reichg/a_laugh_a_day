@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:a_laugh_a_day/icon_classes/app_icons.dart';
+import 'package:a_laugh_a_day/icon_classes/joke_icon.dart';
 import 'package:a_laugh_a_day/models/joke.dart';
 import 'package:a_laugh_a_day/pages/about.dart';
 import 'package:a_laugh_a_day/pages/contact.dart';
@@ -23,13 +23,13 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
   Random rnd = Random();
   int _selectedTab = 0;
   late JokeObject _joke;
-  bool _typingDelayComplete = false;
+  final bool _typingDelayComplete = false;
   late String _dadName;
   late Image _dadImage;
 
-  List<Widget> _tabChildren = [
-    AboutPage(),
-    ContactPage(),
+  final List<Widget> _tabChildren = [
+    const AboutPage(),
+    const ContactPage(),
   ];
 
   @override
@@ -67,7 +67,7 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
                 : _selectedTab == 1
                     ? "ABOUT"
                     : "CONTACT",
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontFamily: 'Futura',
               letterSpacing: 9,
@@ -85,7 +85,7 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
           foregroundColor: Constants.PRIMARY_AQUA,
           elevation: 5,
           shadowColor: Constants.PRIMARY_BLACK,
-          shape: Border(
+          shape: const Border(
             bottom: BorderSide(
               color: Color.fromARGB(210, 0, 0, 0),
               width: 0.5,
@@ -94,9 +94,9 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
         ),
         body: _tabChildren.length > 2 && mounted
             ? _tabChildren[_selectedTab]
-            : InitialScreen(),
+            : const InitialScreen(),
         bottomNavigationBar: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             boxShadow: [
               BoxShadow(
                 color: Constants.PRIMARY_BLACK,
@@ -114,9 +114,9 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
             unselectedItemColor: Constants.PRIMARY_BLACK,
             showSelectedLabels: false,
             showUnselectedLabels: false,
-            items: [
+            items: const [
               BottomNavigationBarItem(
-                icon: Icon(MyFlutterApp.emo_thumbsup),
+                icon: Icon(JokeIcon.joke_icon),
                 label: "Home",
               ),
               BottomNavigationBarItem(

@@ -6,11 +6,11 @@ class AboutDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return const Expanded(
       child: Align(
         alignment: Alignment.center,
         child: Padding(
-          padding: const EdgeInsets.symmetric(
+          padding: EdgeInsets.symmetric(
             vertical: 48.0,
             horizontal: 8,
           ),
