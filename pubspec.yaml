@@ -86,12 +86,9 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: FredokaOne
+    - family: Lato
       fonts:
-        - asset: assets/fonts/FredokaOne-Regular.ttf
-    - family: Aleo-Regular
-      fonts:
-        - asset: assets/fonts/Aleo-Regular.otf
+       - asset: assets/fonts/Lato-Regular.ttf
     - family: JokeIcon
       fonts:
        - asset: assets/fonts/JokeIcon.ttf

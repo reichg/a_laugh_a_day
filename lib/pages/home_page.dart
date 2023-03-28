@@ -68,8 +68,9 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
                     ? "ABOUT"
                     : "CONTACT",
             style: const TextStyle(
+              fontSize: 24,
               fontWeight: FontWeight.bold,
-              fontFamily: 'Futura',
+              fontFamily: 'Lato',
               letterSpacing: 9,
               shadows: [
                 Shadow(

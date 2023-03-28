@@ -38,7 +38,7 @@ class _JokeSourceState extends State<JokeSource> {
               "Where Do The Jokes Come From?",
               textAlign: TextAlign.center,
               style: TextStyle(
-                  fontFamily: 'Futura',
+                  fontFamily: 'Lato',
                   fontWeight: FontWeight.w600,
                   fontSize: 16,
                   color: Constants.PRIMARY_TEXT,
@@ -58,7 +58,7 @@ class _JokeSourceState extends State<JokeSource> {
                 dadJokeSource,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
-                    fontFamily: 'Futura',
+                    fontFamily: 'Lato',
                     fontWeight: FontWeight.w600,
                     fontSize: 16,
                     color: Constants.PRIMARY_TEXT,
@@ -88,7 +88,7 @@ class _JokeSourceState extends State<JokeSource> {
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                             color: Constants.PRIMARY_BLACK,
-                                            fontFamily: 'Futura',
+                                            fontFamily: 'Lato',
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),

@@ -136,7 +136,7 @@ class _JokePageState extends State<JokePage> {
                           child: const Text(
                             "Another Laugh?",
                             style: TextStyle(
-                              fontFamily: 'Futura',
+                              fontFamily: 'Lato',
                               fontWeight: FontWeight.bold,
                               fontSize: 18,
                               color: Constants.PRIMARY_BLACK,
