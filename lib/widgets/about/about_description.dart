@@ -15,7 +15,7 @@ class AboutDescription extends StatelessWidget {
             horizontal: 8,
           ),
           child: Text(
-            "A Laugh A Day is a simple app designed for a quick laugh!",
+            "Dad Jokes 4 Dayz is a simple app designed for a quick laugh!",
             textAlign: TextAlign.center,
             style: TextStyle(
               fontFamily: 'Lato',
