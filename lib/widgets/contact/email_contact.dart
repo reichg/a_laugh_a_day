@@ -88,9 +88,11 @@ class _EmailContactState extends State<EmailContact> {
                                   )
                                   .closed
                                   .then((value) {
-                                setState(() {
-                                  snackBarIsOpen = false;
-                                });
+                                mounted
+                                    ? setState(() {
+                                        snackBarIsOpen = false;
+                                      })
+                                    : null;
                               }));
                     }),
         ],

@@ -141,9 +141,12 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
                                                     )
                                                     .closed
                                                     .then(((value) {
-                                                  setState(() {
-                                                    snackBarIsOpen = false;
-                                                  });
+                                                  mounted
+                                                      ? setState(() {
+                                                          snackBarIsOpen =
+                                                              false;
+                                                        })
+                                                      : null;
                                                 })));
                                       },
                               )

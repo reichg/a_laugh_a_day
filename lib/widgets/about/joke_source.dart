@@ -100,9 +100,11 @@ class _JokeSourceState extends State<JokeSource> {
                                     )
                                     .closed
                                     .then(((value) {
-                                  setState(() {
-                                    snackBarIsOpen = false;
-                                  });
+                                  mounted
+                                      ? setState(() {
+                                          snackBarIsOpen = false;
+                                        })
+                                      : null;
                                 })));
                       },
               ),

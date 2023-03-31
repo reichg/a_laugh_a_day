@@ -90,9 +90,11 @@ class _InstagramContactState extends State<InstagramContact> {
                                   )
                                   .closed
                                   .then(((value) {
-                                setState(() {
-                                  snackBarIsOpen = false;
-                                });
+                                mounted
+                                    ? setState(() {
+                                        snackBarIsOpen = false;
+                                      })
+                                    : null;
                               })));
                     }),
         ],

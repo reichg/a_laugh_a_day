@@ -90,9 +90,11 @@ class _VenmoContactState extends State<VenmoContact> {
                                 )
                                 .closed
                                 .then(((value) {
-                              setState(() {
-                                snackBarIsOpen = false;
-                              });
+                              mounted
+                                  ? setState(() {
+                                      snackBarIsOpen = false;
+                                    })
+                                  : null;
                             })));
                   },
           ),
