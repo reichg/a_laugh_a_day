@@ -6,14 +6,14 @@ import '../widgets/custom_box_shadow/custom_box_shadow.dart';
 import 'package:a_laugh_a_day/utils/constants.dart' as Constants;
 
 class AboutPage extends StatelessWidget {
-  AboutPage({Key? key}) : super(key: key);
+  const AboutPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         color: Constants.TRANSPARENT_BG_DARK_GREY,
-        boxShadow: [
+        boxShadow: const [
           CustomBoxShadow(
               color: Constants.PRIMARY_BLACK,
               offset: Offset(0.5, 0.5),
@@ -22,7 +22,7 @@ class AboutPage extends StatelessWidget {
         ],
         image: DecorationImage(
           image:
-              AssetImage(Constants.assetsBackgroundImages + 'lights_night.jpg'),
+              AssetImage('${Constants.assetsBackgroundImages}lights_night.jpg'),
           fit: BoxFit.cover,
           opacity: 0.25,
         ),
@@ -32,10 +32,10 @@ class AboutPage extends StatelessWidget {
         children: [
           Expanded(
             child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+              margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
               decoration: BoxDecoration(
                 color: Constants.TRANSPARENT_BG_LIGHTER_GREY,
-                boxShadow: [
+                boxShadow: const [
                   CustomBoxShadow(
                       color: Constants.PRIMARY_BLACK,
                       offset: Offset(0.5, 0.5),
@@ -46,21 +46,21 @@ class AboutPage extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  Divider(
+                  const Divider(
                     color: Constants.PRIMARY_AQUA,
                     thickness: 3,
                     indent: 8,
                     endIndent: 8,
                   ),
-                  AboutDescription(),
-                  Divider(
+                  const AboutDescription(),
+                  const Divider(
                     color: Constants.PRIMARY_AQUA,
                     thickness: 3,
                     indent: 8,
                     endIndent: 8,
                   ),
                   JokeSource(),
-                  Divider(
+                  const Divider(
                     color: Constants.PRIMARY_AQUA,
                     thickness: 3,
                     indent: 8,

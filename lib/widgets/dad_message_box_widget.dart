@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:a_laugh_a_day/utils/constants.dart' as Constants;
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
 import 'custom_box_shadow/custom_box_shadow.dart';
@@ -22,6 +23,7 @@ class DadMessageBoxWidget extends StatefulWidget {
 }
 
 class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
+  bool snackBarIsOpen = false;
   @override
   Widget build(BuildContext context) {
     DateTime currentDate = DateTime.now();
@@ -34,7 +36,7 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          padding: EdgeInsets.all(15),
+          padding: const EdgeInsets.all(15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -43,16 +45,17 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
                   padding: const EdgeInsets.all(5),
                   child: Text(
                     "$dateDayName $dateMonthName $dateDayAbb",
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Constants.PRIMARY_TEXT,
-                      fontFamily: 'Futura',
+                      fontFamily: 'Lato',
                       fontSize: 13,
                     ),
                   ),
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                 child: Center(
                   child: Container(
                     decoration: BoxDecoration(
@@ -76,18 +79,18 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
                           child: Row(
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(right: 8.0),
+                                padding: const EdgeInsets.only(right: 12.0),
                                 child: CircleAvatar(
                                   backgroundColor: Colors.transparent,
                                   backgroundImage: widget.dadImage.image,
-                                  radius: 25,
+                                  radius: 28,
                                 ),
                               ),
                               Text(
-                                '${widget.dadName}',
+                                widget.dadName,
                                 style: const TextStyle(
-                                    fontFamily: 'Futura',
-                                    fontWeight: FontWeight.w600,
+                                    fontFamily: 'Lato',
+                                    fontWeight: FontWeight.w500,
                                     fontSize: 20,
                                     color: Constants.PRIMARY_TEXT,
                                     shadows: [
@@ -98,6 +101,55 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
                                       ),
                                     ]),
                               ),
+                              const Spacer(),
+                              IconButton(
+                                icon: const Icon(
+                                  Icons.copy,
+                                  size: 20,
+                                ),
+                                onPressed: snackBarIsOpen
+                                    ? null
+                                    : () async {
+                                        setState(() {
+                                          snackBarIsOpen = true;
+                                        });
+                                        await Clipboard.setData(ClipboardData(
+                                                text: widget.jokeText))
+                                            .then((value) =>
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(
+                                                      const SnackBar(
+                                                        content: Text(
+                                                          "Copied Joke To Clipboard",
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          style: TextStyle(
+                                                            color: Constants
+                                                                .PRIMARY_BLACK,
+                                                            fontFamily: 'Lato',
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
+                                                        ),
+                                                        duration: Duration(
+                                                          milliseconds: 1250,
+                                                        ),
+                                                        backgroundColor:
+                                                            Constants
+                                                                .PRIMARY_AQUA,
+                                                      ),
+                                                    )
+                                                    .closed
+                                                    .then(((value) {
+                                                  mounted
+                                                      ? setState(() {
+                                                          snackBarIsOpen =
+                                                              false;
+                                                        })
+                                                      : null;
+                                                })));
+                                      },
+                              )
                             ],
                           ),
                         ),
@@ -109,17 +161,18 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
                             maxLines: 11,
                             widget.jokeText,
                             style: const TextStyle(
-                                fontFamily: 'Futura',
-                                fontSize: 22,
-                                color: Constants.PRIMARY_TEXT,
-                                fontWeight: FontWeight.w300,
-                                shadows: [
-                                  Shadow(
-                                    offset: Offset(1.5, 1.5),
-                                    blurRadius: 3.0,
-                                    color: Constants.PRIMARY_BLACK,
-                                  ),
-                                ]),
+                              fontFamily: 'Lato',
+                              fontSize: 22,
+                              color: Constants.PRIMARY_TEXT,
+                              fontWeight: FontWeight.w300,
+                              shadows: [
+                                Shadow(
+                                  offset: Offset(1.5, 1.5),
+                                  blurRadius: 3.0,
+                                  color: Constants.PRIMARY_BLACK,
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ],
@@ -133,9 +186,9 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
                   padding: const EdgeInsets.all(6),
                   child: Text(
                     "Received: $dateHour",
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Constants.PRIMARY_TEXT,
-                        fontFamily: 'Futura',
+                        fontFamily: 'Lato',
                         fontSize: 13),
                   ),
                 ),

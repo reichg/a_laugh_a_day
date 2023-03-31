@@ -6,19 +6,19 @@ class AboutDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return const Expanded(
       child: Align(
         alignment: Alignment.center,
         child: Padding(
-          padding: const EdgeInsets.symmetric(
+          padding: EdgeInsets.symmetric(
             vertical: 48.0,
             horizontal: 8,
           ),
           child: Text(
-            "A Laugh A Day is a simple app designed for a quick laugh!",
+            "Dad Jokes 4 Dayz is a simple app designed for a quick laugh!",
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontFamily: 'Futura',
+              fontFamily: 'Lato',
               fontSize: 20,
               color: Constants.PRIMARY_TEXT,
               shadows: [

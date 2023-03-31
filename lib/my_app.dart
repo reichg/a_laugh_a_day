@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:a_laugh_a_day/pages/home_page.dart';
 
 class MyApp extends StatefulWidget {
-  MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   State<MyApp> createState() => _MyAppState();

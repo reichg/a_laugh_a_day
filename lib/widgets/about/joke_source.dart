@@ -4,14 +4,22 @@ import 'package:a_laugh_a_day/utils/constants.dart' as Constants;
 
 import '../custom_box_shadow/custom_box_shadow.dart';
 
-class JokeSource extends StatelessWidget {
-  const JokeSource({Key? key}) : super(key: key);
+class JokeSource extends StatefulWidget {
+  JokeSource({Key? key}) : super(key: key);
+
+  @override
+  State<JokeSource> createState() => _JokeSourceState();
+}
+
+class _JokeSourceState extends State<JokeSource> {
   final String dadJokeSource = Constants.dadJokeSource;
+
+  bool snackBarIsOpen = false;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+      margin: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
         boxShadow: const [
@@ -24,13 +32,13 @@ class JokeSource extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
             child: Text(
               "Where Do The Jokes Come From?",
               textAlign: TextAlign.center,
               style: TextStyle(
-                  fontFamily: 'Futura',
+                  fontFamily: 'Lato',
                   fontWeight: FontWeight.w600,
                   fontSize: 16,
                   color: Constants.PRIMARY_TEXT,
@@ -47,10 +55,10 @@ class JokeSource extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "$dadJokeSource",
+                dadJokeSource,
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontFamily: 'Futura',
+                style: const TextStyle(
+                    fontFamily: 'Lato',
                     fontWeight: FontWeight.w600,
                     fontSize: 16,
                     color: Constants.PRIMARY_TEXT,
@@ -63,28 +71,42 @@ class JokeSource extends StatelessWidget {
                     ]),
               ),
               IconButton(
-                icon: Icon(Icons.copy),
-                onPressed: () async {
-                  await Clipboard.setData(ClipboardData(text: "$dadJokeSource"))
-                      .then(
-                          (value) => ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    "Copied Website To Clipboard",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      color: Constants.PRIMARY_BLACK,
-                                      fontFamily: 'Futura',
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  duration: Duration(
-                                    milliseconds: 1250,
-                                  ),
-                                  backgroundColor: Constants.PRIMARY_AQUA,
-                                ),
-                              ));
-                },
+                icon: const Icon(Icons.copy),
+                onPressed: snackBarIsOpen
+                    ? null
+                    : () async {
+                        setState(() {
+                          snackBarIsOpen = true;
+                        });
+                        await Clipboard.setData(
+                                ClipboardData(text: dadJokeSource))
+                            .then((value) => ScaffoldMessenger.of(context)
+                                    .showSnackBar(
+                                      const SnackBar(
+                                        content: Text(
+                                          "Copied Website To Clipboard",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            color: Constants.PRIMARY_BLACK,
+                                            fontFamily: 'Lato',
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        duration: Duration(
+                                          milliseconds: 1250,
+                                        ),
+                                        backgroundColor: Constants.PRIMARY_AQUA,
+                                      ),
+                                    )
+                                    .closed
+                                    .then(((value) {
+                                  mounted
+                                      ? setState(() {
+                                          snackBarIsOpen = false;
+                                        })
+                                      : null;
+                                })));
+                      },
               ),
             ],
           ),
