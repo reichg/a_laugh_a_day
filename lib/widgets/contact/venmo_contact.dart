@@ -46,7 +46,7 @@ class _VenmoContactState extends State<VenmoContact> {
             venmoHandle,
             textAlign: TextAlign.center,
             style: const TextStyle(
-                fontFamily: 'Futura',
+                fontFamily: 'Lato',
                 fontWeight: FontWeight.w600,
                 fontSize: 16,
                 color: Constants.PRIMARY_TEXT,
@@ -78,7 +78,7 @@ class _VenmoContactState extends State<VenmoContact> {
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         color: Constants.PRIMARY_BLACK,
-                                        fontFamily: 'Futura',
+                                        fontFamily: 'Lato',
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),

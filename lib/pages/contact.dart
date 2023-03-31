@@ -58,7 +58,7 @@ class ContactPage extends StatelessWidget {
                 "Feedback?",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontFamily: 'Futura',
+                  fontFamily: 'Lato',
                   fontSize: 20,
                   color: Constants.PRIMARY_TEXT,
                   shadows: [
@@ -92,7 +92,7 @@ class ContactPage extends StatelessWidget {
                 "Donations?",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontFamily: 'Futura',
+                  fontFamily: 'Lato',
                   fontSize: 20,
                   color: Constants.PRIMARY_TEXT,
                   shadows: [

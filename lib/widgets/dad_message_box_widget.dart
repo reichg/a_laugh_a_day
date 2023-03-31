@@ -47,7 +47,7 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
                     "$dateDayName $dateMonthName $dateDayAbb",
                     style: const TextStyle(
                       color: Constants.PRIMARY_TEXT,
-                      fontFamily: 'Futura',
+                      fontFamily: 'Lato',
                       fontSize: 13,
                     ),
                   ),
@@ -83,14 +83,14 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
                                 child: CircleAvatar(
                                   backgroundColor: Colors.transparent,
                                   backgroundImage: widget.dadImage.image,
-                                  radius: 25,
+                                  radius: 28,
                                 ),
                               ),
                               Text(
                                 widget.dadName,
                                 style: const TextStyle(
-                                    fontFamily: 'Futura',
-                                    fontWeight: FontWeight.w600,
+                                    fontFamily: 'Lato',
+                                    fontWeight: FontWeight.w500,
                                     fontSize: 20,
                                     color: Constants.PRIMARY_TEXT,
                                     shadows: [
@@ -126,8 +126,7 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
                                                           style: TextStyle(
                                                             color: Constants
                                                                 .PRIMARY_BLACK,
-                                                            fontFamily:
-                                                                'Futura',
+                                                            fontFamily: 'Lato',
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                           ),
@@ -159,7 +158,7 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
                             maxLines: 11,
                             widget.jokeText,
                             style: const TextStyle(
-                              fontFamily: 'Futura',
+                              fontFamily: 'Lato',
                               fontSize: 22,
                               color: Constants.PRIMARY_TEXT,
                               fontWeight: FontWeight.w300,
@@ -186,7 +185,7 @@ class _DadMessageBoxWidgetState extends State<DadMessageBoxWidget> {
                     "Received: $dateHour",
                     style: const TextStyle(
                         color: Constants.PRIMARY_TEXT,
-                        fontFamily: 'Futura',
+                        fontFamily: 'Lato',
                         fontSize: 13),
                   ),
                 ),

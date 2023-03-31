@@ -63,14 +63,15 @@ class _JokeGeneratorHomeState extends State<JokeGeneratorHome> {
         appBar: AppBar(
           title: Text(
             _selectedTab == 0
-                ? "A LAUGH A DAY"
+                ? "DAD JOKES 4 DAYZ"
                 : _selectedTab == 1
                     ? "ABOUT"
                     : "CONTACT",
             style: const TextStyle(
+              fontSize: 24,
               fontWeight: FontWeight.bold,
-              fontFamily: 'Futura',
-              letterSpacing: 9,
+              fontFamily: 'Lato',
+              letterSpacing: 6,
               shadows: [
                 Shadow(
                   offset: Offset(1.5, 1.5),
