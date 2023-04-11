@@ -86,32 +86,6 @@ class ContactPage extends StatelessWidget {
               indent: 8,
               endIndent: 8,
             ),
-            Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text(
-                "Donations?",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontFamily: 'Lato',
-                  fontSize: 20,
-                  color: Constants.PRIMARY_TEXT,
-                  shadows: [
-                    Shadow(
-                      offset: Offset(2, 2),
-                      blurRadius: 3.0,
-                      color: Constants.PRIMARY_BLACK,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            VenmoContact(),
-            Divider(
-              color: Constants.PRIMARY_AQUA,
-              thickness: 3,
-              indent: 8,
-              endIndent: 8,
-            ),
           ],
         ),
       ),
